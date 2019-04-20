@@ -16,5 +16,7 @@ namespace SmartSchoolSystem.Models
         [Display(Name = "Password")]
         public string Passward { get; set; }
 
+
+        public string accountname { get; set; }
     }
 }

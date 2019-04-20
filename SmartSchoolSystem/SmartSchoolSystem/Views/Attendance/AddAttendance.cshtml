@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SmartSchoolSystem.Models.Attendance>
+
+@{
+    ViewBag.Title = "AddAttendance";
+}
+
+<h2> &nbsp; &nbsp; &nbsp; Attendance</h2>
+
+<p style="text-align-last:center">
+    @*@Html.ActionLink("Create New", "Create")*@
+    <label>Class: </label> &nbsp;
+    <select>
+        <option>1A</option>
+        <option>1B</option>
+        <option>1C</option>
+        <option>1D</option>
+
+        <option>2A</option>
+        <option>2B</option>
+        <option>2C</option>
+        <option>2D</option>
+
+        <option>3A</option>
+        <option>3B</option>
+        <option>3C</option>
+        <option>3D</option>
+
+        <option>4A</option>
+        <option>4B</option>
+        <option>4C</option>
+        <option>4D</option>
+    </select>
+
+    &nbsp;
+    &nbsp;
+    &nbsp;
+
+    <label>Date: </label> &nbsp;
+    <input type="date" />
+    
+    
+
+</p>
+<table class="table" cellpadding="10">
+    <tr>
+        <th>Regiatration Number</th>
+        <th>Status</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.regNo
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+        <td>
+            <select>
+                <option>Present</option>
+                <option>Absent</option>
+                <option>Leave</option>
+            </select>
+        </td>
+    </tr>
+}
+
+</table>

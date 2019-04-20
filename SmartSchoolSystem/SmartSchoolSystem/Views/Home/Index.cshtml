@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<SmartSchoolSystem.Models.Event>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -8,7 +10,7 @@
     <div id="main-slider" class="flexslider">
         <ul class="slides">
             <li>
-                <img src="img/slides/1.jpg" alt="" />
+                <img src="~/img/slides/1.jpg" alt="" />
                 <div class="flex-caption">
                     <h3>Smart School System</h3>
                     <p>We Teach Students for Sucessful Future</p>
@@ -16,7 +18,7 @@
                 </div>
             </li>
             <li>
-                <img src="img/slides/2.jpg" alt="" />
+                <img src="~/img/slides/2.jpg" alt="" />
                 <div class="flex-caption">
                     <h3>Learn to be Sucessful</h3>
                     <p>Lorem ipsum dolo amet, consectetur  provident.</p>
@@ -48,32 +50,28 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="aligncenter"><h2 class="aligncenter">Courses</h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus ovident, doloribus omnis minus temporibus perferendis nesciunt..</div>
+                <div class="aligncenter"><h2 class="aligncenter">Events</h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident, doloribus omnis minus ovident, doloribus omnis minus temporibus perferendis nesciunt..</div>
                 <br />
             </div>
         </div>
+
         <div class="row">
             <div class="skill-home">
                 <div class="skill-home-solid clearfix">
-                    <div class="col-md-3 text-center">
-                        <span class="icons c1"><i class="fa fa-book"></i></span> <div class="box-area">
-                            <h3>Vocational Courses</h3> <p>Lorem ipsum dolor sitamet, consec tetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-3 text-center">
+                            <span class="icons c3"><i class="fa fa-trophy"></i></span> <div class="box-area">
+                                <h3>@item.name</h3> 
+                            <p>@item.description</div>
                         </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <span class="icons c2"><i class="fa fa-users"></i></span> <div class="box-area">
-                            <h3>MassComm Courses</h3> <p>Lorem ipsum dolor sitamet, consec tetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <span class="icons c3"><i class="fa fa-trophy"></i></span> <div class="box-area">
-                            <h3>Accounts</h3> <p>Lorem ipsum dolor sitamet, consec tetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <span class="icons c4"><i class="fa fa-globe"></i></span> <div class="box-area">
-                            <h3>Business Management</h3> <p>Lorem ipsum dolor sitamet, consec tetur adipisicing elit. Dolores quae porro consequatur aliquam, incidunt eius magni provident</p>
-                        </div>
+                    }
+                    <div class="aligncenter">
+
+                        <br />
+                        <br />
+                        <input type="button" value="See All" onclick="location.href='@Url.Action("Index", "Events")'" />
                     </div>
                 </div>
             </div>
@@ -109,7 +107,7 @@
             </div>
             <div class="col-md-6 col-sm-6">
                 <div class="about-image">
-                    <img src="img/about.jpg" alt="About Images">
+                    <img src="~/img/about.jpg" alt="About Images">
                 </div>
             </div>
         </div>
@@ -225,23 +223,4 @@
 
     </div>
 
-</div>
-
-<div class="aligncenter">
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-  </div>
-</div>
 </div>

@@ -7,30 +7,42 @@ using System.Web.Mvc;
 
 namespace SmartSchoolSystem.Controllers
 {
-    public class LogInController : Controller
+    public class AttendanceController : Controller
     {
-        // GET: LogIn
+        // GET: Attendance
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult LogIn()
+
+        public ActionResult AddAttendance()
         {
-            return View();
+            Attendance.StudentsList.Clear();
+            Attendance att = new Attendance();
+            att.status = "Present";
+            att.regNo = "2016CS105";
+
+            Attendance.StudentsList.Add(att);
+            Attendance.StudentsList.Add(att);
+            Attendance.StudentsList.Add(att);
+            Attendance.StudentsList.Add(att);
+
+            return View(Attendance.StudentsList);
         }
-        // GET: LogIn/Details/5
+
+        // GET: Attendance/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: LogIn/Create
+        // GET: Attendance/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: LogIn/Create
+        // POST: Attendance/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -46,13 +58,13 @@ namespace SmartSchoolSystem.Controllers
             }
         }
 
-        // GET: LogIn/Edit/5
+        // GET: Attendance/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: LogIn/Edit/5
+        // POST: Attendance/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -68,13 +80,13 @@ namespace SmartSchoolSystem.Controllers
             }
         }
 
-        // GET: LogIn/Delete/5
+        // GET: Attendance/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: LogIn/Delete/5
+        // POST: Attendance/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -89,45 +101,5 @@ namespace SmartSchoolSystem.Controllers
                 return View();
             }
         }
-        public ActionResult LogOut()
-        {
-            HelperClass.account = "";
-            return RedirectToAction("Index", "Home");
-        }
-
-        
-        public ActionResult LogInPost(LogIn login)
-        {
-            
-            try
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        public ActionResult LogInRequest(LogIn login,string account)
-        {
-            return View();
-        }
-        public ActionResult SetAdmin()
-        {
-            HelperClass.account = "Admin";
-            return RedirectToAction("Index", "Home");
-        }
-        public ActionResult SetStudent()
-        {
-            HelperClass.account = "Student";
-            return RedirectToAction("Index", "Home");
-
-        }
-        public ActionResult SetParent()
-        {
-            HelperClass.account = "Parent";
-            return RedirectToAction("Index", "Home");
-        }
-
     }
 }

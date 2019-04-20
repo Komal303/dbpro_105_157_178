@@ -1,9 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .elements:hover
+        {
+            background: #ffffff;
+        }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Smart School System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="http://webthemez.com" />
@@ -20,59 +26,84 @@
 </head>
 <body>
     <div id="wrapper" class="home-page">
-    <div class="topbar">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="pull-left hidden-xs">Smart School System</p>
-                    <p class="pull-right"><i class="fa fa-phone"></i>Tel No. (+001) 123-456-789</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- start header -->
     <header>
-        <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar navbar-default navbar-fixed-top" style="background-color:black">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
+                        
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="~/img/logo.png" alt="logo" />Smart School System</a>
+                    <a class="navbar-brand" href="Index.html"><img src="~/img/logo.png" alt="logo" />Smart School System</a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li>
-                            @Html.ActionLink("Home Page", "Index" ,"Home", new { @class = "elements" }, null)
+                        <li class="elements">
+                            @Html.ActionLink("Home Page", "Index" ,"Home", null, null)
                         </li>
-                        
-                                <li>
-                                    @Html.ActionLink("SignIn", "Login", "Account", new { @class = "elements" }, null)
-                                </li>
-                        <li>
-                            @Html.ActionLink("SignUp", "Register","Account", new { @class = "elements" }, null)
-                        </li>
-                        <li>
+                      
+
+                        <li class="elements">
                             @Html.ActionLink("Contact Us", "Contact", "Home", new { @class = "elements" }, null)
                         </li>
-                        <li>
-                            @Html.ActionLink("About", "About", "Home", new { @class = "elements" }, null)
+                        <li class="elements">
+                            @Html.ActionLink("About", "About", "Home", new { @class = "elements" },null)
                         </li>
+                        @if (HelperClass.account == "")
+                        {
+                            <li class="elements">
+                                @Html.ActionLink("SignIn", "LogIn", "LogIn", new { @class = "elements" }, null)
+                            </li>
+                            <li class="elements">
+                                @Html.ActionLink("SignUp", "ParentRegistration", "Parent", new { @class = "elements" }, null)
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="elements">
+                                @Html.ActionLink("LogOut", "LogOut", "LogIn", new { @class = "elements" }, null)
+                            </li>
+                        }
                             </ul>
-                        
+                        <br>
+                    <br>
                 </div>
             </div>
         </div>
+
+        
+            <nav style="position:relative; left: 10vw; width: 80%; padding-top: 10px; background-color :black; border-color:black;">
+                <ul class="nav nav-pills">
+@if (HelperClass.account == "Admin")
+{
+                    <li>@Html.ActionLink("Event Page", "Index", "Events")</li>
+                    <li>@Html.ActionLink("Attendance", "AddAttendance", "Attendance")</li>
+                    <li>@Html.ActionLink("Approval Requests", "", "")</li>
+                    <li>@Html.ActionLink("Leaves Approval", "", "")</li>
+                    <li>@Html.ActionLink("Class Page", "Index", "Class")</li>
+                    <li>@Html.ActionLink("Subject Page", "", "")</li>
+                    <li>@Html.ActionLink("Student Left Page", "", "")</li>
+                    <li>@Html.ActionLink("Terms Page", "", "")</li>
+
+                    <li>@Html.ActionLink("Student  Marking Page", "", "")</li>
+}
+                    @if (HelperClass.account != null && HelperClass.account != "")
+                    {
+                        <li>@Html.ActionLink("Time Table Page", "", "")</li>
+                    }
+                </ul>
+            </nav>
+        
     </header>
         <div>
             @RenderBody()
         </div>
-  
     <hr />
-
-    <footer>
+    <footer style="background-color:black">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -123,7 +154,7 @@
                 </div>
             </div>
         </div>
-        <div id="sub-footer">
+        <div id="sub-footer" style="background-color:black">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
