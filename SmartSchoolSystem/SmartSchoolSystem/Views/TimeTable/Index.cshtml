@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SmartSchoolSystem.Models.TimeTableViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Day
+        </th>
+        <th>
+            8:00 - 9:00
+        </th>
+        <th>
+            9:00 - 10:00
+        </th>
+        <th>
+            10:00 - 11:00
+        </th>
+        <th>
+            11:00 - 12:00
+        </th>
+        <th>
+            12:00 - 1:00
+        </th>
+        <th>
+            1:00 - 2:00
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.day)
+
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.subject)*@
+            English
+        </td>
+        <td>
+            Urdu
+        </td>
+        <td>
+            Math
+        </td>
+        <td>
+            Phy
+        </td>
+        <td>
+            Chem
+        </td>
+        <td>
+            Bio
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<SmartSchoolSystem.Models.StudentMarkingViewModel>
+
+@{
+    ViewBag.Title = "Mark";
+}
+
+<h2>Marking</h2>
+
+<div>
+    <label>Class: </label> &nbsp;
+    <select>
+        <option>1A</option>
+        <option>1B</option>
+        <option>2A</option>
+        <option>2A</option>
+    </select>
+
+    &nbsp; &nbsp;
+
+    <label>Subjec: </label> &nbsp;
+    <select>
+        <option>English</option>
+        <option>Math</option>
+        <option>Physics</option>
+    </select>
+    
+    &nbsp; &nbsp;
+
+    <label>Total Marks: </label> &nbsp;
+    <input type="text" placeholder="Total Marks"/>
+    
+
+</div>
+<br />
+
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.studentId)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.studentName)*@
+            Name
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.studentRegNo)*@
+            Registration Number
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.obtainedMarks)*@
+            Obtained Marks
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.studentId)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.studentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.studentRegNo)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.obtainedMarks)*@
+            <input type="text" placeholder="Obtained Marks" class="form-control"/>
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>*@
+    </tr>
+}
+
+</table>
+
+<div style="text-align-last:center">
+    <button type="submit" style="align-items:center; text-align:center">Mark</button>
+</div>
+

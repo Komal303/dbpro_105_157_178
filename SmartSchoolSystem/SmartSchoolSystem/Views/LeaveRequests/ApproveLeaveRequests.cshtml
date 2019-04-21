@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SmartSchoolSystem.Models.LeaveRequests>
+
+@{
+    ViewBag.Title = "ApproveLeaveRequests";
+}
+
+<h2>ApproveLeaveRequests</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.regNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.regNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateTo)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.status)*@
+            <button type="submit">@Html.ActionLink("Approve", "ApproveLeaveRequests", new { id = item.id })</button>
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.status)*@
+            <button type="submit">@Html.ActionLink("Decline", "ApproveLeaveRequests", new { id = item.id })</button>
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>
