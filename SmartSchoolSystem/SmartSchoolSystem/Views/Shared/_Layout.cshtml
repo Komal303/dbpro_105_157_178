@@ -80,14 +80,14 @@
                 <ul class="nav nav-pills">
 @if (HelperClass.account == "Admin")
 {
-                    <li>@Html.ActionLink("Event Page", "Index", "Events")</li>
-                    <li>@Html.ActionLink("Attendance", "AddAttendance", "Attendance")</li>
-                    <li>@Html.ActionLink("Registration Requests", "ViewRegistrationRequests", "RegistrationRequests")</li>
-                    <li>@Html.ActionLink("Leaves Requests", "ViewLeaveRequests", "LeaveRequests")</li>
-                    <li>@Html.ActionLink("Class", "Index", "Class")</li>
-                    <li>@Html.ActionLink("Subject", "Index", "Subject")</li>
-                    <li>@Html.ActionLink("Students Left", "ViewActiveStudents", "StudentsLeft")</li>
-                    <li>@Html.ActionLink("Student Marking", "Mark", "StudentMarking")</li>
+                    <li style="color:gray;">@Html.ActionLink("Event Page", "Index", "Events")</li>
+                    <li class="elements">@Html.ActionLink("Attendance", "AddAttendance", "Attendance")</li>
+                    <li class="elements">@Html.ActionLink("Registration Requests", "ViewRegistrationRequests", "RegistrationRequests")</li>
+                    <li class="elements">@Html.ActionLink("Leaves Requests", "ViewLeaveRequests", "LeaveRequests")</li>
+                    <li class="elements">@Html.ActionLink("Class", "Index", "Class")</li>
+                    <li class="elements">@Html.ActionLink("Subject", "Index", "Subject")</li>
+                    <li class="elements">@Html.ActionLink("Students Left", "ViewActiveStudents", "StudentsLeft")</li>
+                    <li class="elements">@Html.ActionLink("Student Marking", "Mark", "StudentMarking")</li>
 }
                     @if (HelperClass.account != null && HelperClass.account != "")
                     {

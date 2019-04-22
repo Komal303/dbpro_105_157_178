@@ -5,13 +5,11 @@
 }
 
 <h2 style="text-align:center;">School Classes Page</h2>
-<div>
-    <a class="btn btn-primary" style="background-color:black; border-color:black;" href=@Url.Action("Index", "Home")>Back</a>
-</div>
+
 <br />
 @if (HelperClass.account == "Admin")
 {
-    <div>
+    <div style="align-self:center; text-align:center;padding-bottom:30px;">
         <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("Create", "Class")>Create New Class</a>
     </div>
 }
