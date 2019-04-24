@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartSchoolSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,7 +21,27 @@ namespace SmartSchoolSystem.Controllers
 
         public ActionResult ParentRegistration()
         {
+
             return View();
+        }
+        [HttpPost]
+        public ActionResult ParentRegistration(ParentRegistrationViewModels p)
+        {
+            DB37Entities db = new DB37Entities();
+            if(db.Parentstbls.Any(t1=> t1.MailAddress.Equals(p.Email) || db.Parentstbls.Any(t2 => t2.CNIC.Equals(p.CNIC)) || db.Parentstbls.Any(t3 => t3.PhoneNumber.Equals(p.PhoneNumber))))
+            {
+                ViewBag.Warnning = "Parent with these credentials already exist";
+                return View();
+            }
+            ParentRegistrationViewModels.p.FirstName = p.FirstName;
+            ParentRegistrationViewModels.p.LastName = p.LastName ;
+            ParentRegistrationViewModels.p.Email = p.Email;
+            ParentRegistrationViewModels.p.PhoneNumber = p.PhoneNumber;
+            ParentRegistrationViewModels.p.CNIC = p.CNIC;
+            ParentRegistrationViewModels.p.PrntPassword = p.PrntPassword;
+            
+
+            return RedirectToAction("StudentRegistration","Student");
         }
         // GET: Parent/Details/5
         public ActionResult Details(int id)

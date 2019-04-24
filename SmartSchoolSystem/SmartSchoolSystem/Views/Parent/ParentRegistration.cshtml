@@ -1,7 +1,8 @@
-﻿@model SmartSchoolSystem.Models.ParentRegistration
+﻿@model SmartSchoolSystem.Models.ParentRegistrationViewModels
 
 @{
     ViewBag.Title = "ParentRegistration";
+    
 }
 <div style="padding-top:40px;">
     <div style="position:relative; width: 50%; height: 550px; border: 1px solid; margin: auto;padding-top:20px; padding-left: 00px; border-radius: 10px; box-shadow: 5px 10px 50px; background-color: #F9F9F9;">
@@ -70,9 +71,14 @@
             <input type="submit" value="Register" class="btn btn-default" />
         </div>
     </div>*@
+                    <div class="text-danger">
+                        @ViewBag.Warnning
+                    </div>
                     <div class="form-group">
                         <div style="position: relative; left: 45%;">
-                            <a class="btn btn-primary" style="background-color:black; border-color:black;" href=@Url.Action("StudentRegistration", "Student")>Register</a>
+                            <button type="submit">
+                                Register
+                            </button>
                         </div>
                         </div>
                 </div>
