@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SmartSchoolSystem.Models.TimeTableIndexViewModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="text-align:center;">Index</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<p>
+    @Html.ActionLink("Add New Time Table Entry", "Create", "TimeTable")
+</p>
+<div style="padding-left:150px;">
+    <label>Class: </label> &nbsp;
+    <select id="Classlist" name="Classlist">
+
+        @foreach (var o in ViewBag.Options)
+        {
+            <option value="@o.ToString()">@o.ToString()</option>
+        }
+    </select>
+</div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <input type="submit" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Time Table" class="btn btn-default" />
+</div>
+<h4 style="text-align:center;">@ViewBag.classname</h4>
+<div class="text-center" style="border: 5px solid #000000; border-radius: 5px; padding: 10px; width: 90%; height: auto; margin: auto;">
+
+    <table class="table">
+        <tr>
+            <th>
+                <div >
+                    @Html.DisplayNameFor(model => model.dayname)
+                </div>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subjectname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div>
+                    @Html.DisplayFor(modelItem => item.dayname)
+                        </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subjectname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { subjectname = item.subjectname, classname = ViewBag.classname, dayname = item.dayname, time = item.time })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+    }

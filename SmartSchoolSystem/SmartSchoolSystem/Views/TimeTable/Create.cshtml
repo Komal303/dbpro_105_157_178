@@ -1,0 +1,124 @@
+﻿@model SmartSchoolSystem.Models.TimeTableViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div style="padding-top:40px;">
+    <div style="position:relative; width: 40%; height: 400px; border: 1px solid; margin: auto;padding-top:20px; padding-left: 00px; border-radius: 10px; box-shadow: 5px 10px 50px; background-color: #F9F9F9;">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4 style="position: relative; left: 38%;">Create Time Table</h4>
+                
+                    <div style="padding-left:20px;">
+                        <div style="padding-left:150px;">
+                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Class: </label> &nbsp;
+
+
+                            <select id="Classlist" name="Classlist" style="width:140px; align-self:center;" class="form-control">
+
+                                @foreach (var o in ViewBag.Options)
+                                {
+                                    <option value="@o.ToString()">@o.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="padding-left:150px;">
+                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Subject: </label> &nbsp;
+                            <select id="subjectList" name="subjectList" style="width:140px; " class="form-control">
+
+                                @foreach (var o in new SelectList(""))
+                                {
+                                    <option value="@o.ToString()">@o.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="padding-left:150px;">
+                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Day: </label> &nbsp;
+                            <select id="daylist" name="daylist" style="width:140px ;padding-left:20px;" class="form-control">
+
+                                @foreach (var o in ViewBag.Days)
+                                {
+                                    <option value="@o.ToString()">@o.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                        <div style="padding-left:150px;">
+                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Time: </label> &nbsp;
+                            <select id="timelist" name="timelist" style="width:140px;padding-left:10px;" class="form-control">
+
+                                @foreach (var o in ViewBag.Time)
+                                {
+                                    <option value="@o.ToString()">@o.ToString()</option>
+                                }
+                            </select>
+                        </div>
+                        </div>
+                        <div class="text-danger" style="padding-left:40px">
+                            @ViewBag.warn
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                       
+                
+            </div>
+            
+        }
+        </div>
+    </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#Classlist").change(function () {
+                    $.get("/TimeTable/UpdateSubjects", { classname: $("#Classlist").find(":selected").text() }, function (data) {
+                        $("#subjectList").empty();
+                        $.each(data, function (index, row) {
+                            $("#subjectList").append("<option>" + row + "</option>")
+                        });
+                    });
+                })
+            });
+        </script>
+
+        @*
+            @section Scripts {
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $("#Classlist").change(function () {
+                            updatesubject();
+                        });
+
+                        function updatesub() {
+                            $.ajax({
+                                type: "POST",
+                                url: 'http://localhost:50566/TimeTable/UpdateSubjects',
+                                data: { input: $('#Classlist').val() },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+
+                            });
+                        }
+
+                        updatesubject()
+                        {
+                            updatesub();
+                        }
+                    });
+                </script>
+            }
+        *@

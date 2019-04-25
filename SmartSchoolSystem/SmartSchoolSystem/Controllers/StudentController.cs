@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartSchoolSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,49 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult StudentRegistration()
         {
             return View(); 
+        }
+        [HttpPost]
+        public ActionResult StudentRegistration(StudentRegistrationViewModels s)
+        {
+            DB37Entities db = new DB37Entities();
+
+            if (HelperClass.account != "Parent" && ParentRegistrationViewModels.p.Email == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if(HelperClass.account != "Parent")
+            {
+                Parentstbl parent = new Parentstbl();
+                parent.FirstName = ParentRegistrationViewModels.p.FirstName;
+
+                parent.LastName = ParentRegistrationViewModels.p.LastName;
+
+                parent.PhoneNumber = ParentRegistrationViewModels.p.PhoneNumber;
+
+                parent.MailAddress = ParentRegistrationViewModels.p.Email;
+
+                parent.CNIC = ParentRegistrationViewModels.p.CNIC;
+
+                parent.PrntPassword = ParentRegistrationViewModels.p.PrntPassword;
+                parent.ApprovalStatusId = db.ApprovalStatustbls.Where(t=>t.Name.Equals("pending")).FirstOrDefault().Id;
+                db.Parentstbls.Add(parent);
+
+            }
+
+            Studentstbl student = new Studentstbl();
+            student.FirstName = s.FirstName;
+            student.LastName = s.LastName;
+            student.ActiveStatusId = db.ActiveStatustbls.Where(t => t.Name.Equals("Active")).FirstOrDefault().Id;
+            student.ApprovalStatusId = db.ApprovalStatustbls.Where(t => t.Name.Equals("pending")).FirstOrDefault().Id;
+            student.Username = s.Username;
+            student.StdPassword = s.StdPassword;
+
+            db.Studentstbls.Add(student);
+
+            
+            db.SaveChanges();
+            
+            return RedirectToAction("Index","Home");
         }
 
 

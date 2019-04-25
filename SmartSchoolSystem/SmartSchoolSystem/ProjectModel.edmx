@@ -1,0 +1,1350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DB37Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActiveStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Adminstratortbl">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminPassword" Type="nvarchar" MaxLength="30" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="ApprovalStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AttendanceMarkingtbl">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="AttendanceDate" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="AttendanceStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="AttendanceStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="ClassSubjecttbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="SubjectId" Type="int" />
+        </EntityType>
+        <EntityType Name="Classtbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Section" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Leavestbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="LeaveDescription" Type="nvarchar(max)" />
+          <Property Name="DateFrom" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="ApprovalStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="Markingstbl">
+          <Key>
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="TermId" />
+          </Key>
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="TotalMarks" Type="float" />
+          <Property Name="ObtainedMarks" Type="float" />
+          <Property Name="TermId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parentstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PrntPassword" Type="nvarchar" MaxLength="30" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="15" />
+          <Property Name="ApprovalStatusId" Type="int" />
+          <Property Name="MailAddress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ParentStudenttbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+        </EntityType>
+        <EntityType Name="SchoolEventstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="EventDescription" Type="nvarchar(max)" />
+          <Property Name="EventDate" Type="datetime" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="20" />
+          <Property Name="Charges" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="StudentClasstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="StudentId" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentLefttbl">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="DateLeft" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Studentstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="StdPassword" Type="nvarchar" MaxLength="30" />
+          <Property Name="CNIC" Type="nvarchar" MaxLength="15" />
+          <Property Name="ApprovalStatusId" Type="int" />
+          <Property Name="ActiveStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="Subjectstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Termstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TimeTabletbl">
+          <Key>
+            <PropertyRef Name="WeeksDay" />
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="WeeksDay" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ClassId" Type="int" Nullable="false" />
+          <Property Name="SubjectId" Type="int" Nullable="false" />
+          <Property Name="LectureTime" Type="time" Precision="7" />
+        </EntityType>
+        <Association Name="FK__Attendanc__Atten__2F10007B">
+          <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AttendanceMarkingtbl" Type="Self.AttendanceMarkingtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttendanceStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendanceMarkingtbl">
+              <PropertyRef Name="AttendanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attendanc__Stude__2E1BDC42">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AttendanceMarkingtbl" Type="Self.AttendanceMarkingtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendanceMarkingtbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassSubj__Class__1ED998B2">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassSubjecttbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassSubj__Subje__1FCDBCEB">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassSubjecttbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leavestbl__Paren__33D4B598">
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+          <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leavestbl">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leavestbl__Stude__34C8D9D1">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+          <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leavestbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Class__403A8C7D">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Stude__4222D4EF">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Subje__412EB0B6">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__TermI__4316F928">
+          <End Role="Termstbl" Type="Self.Termstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Termstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parentstb__Appro__182C9B23">
+          <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parentstbl">
+              <PropertyRef Name="ApprovalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParentStu__Paren__276EDEB3">
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+          <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentStudenttbl">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParentStu__Stude__267ABA7A">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+          <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentStudenttbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCl__Class__22AA2996">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentClasstbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCl__Stude__239E4DCF">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentClasstbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentLe__Stude__37A5467C">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentLefttbl" Type="Self.StudentLefttbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentLefttbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Studentst__Activ__15502E78">
+          <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActiveStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studentstbl">
+              <PropertyRef Name="ActiveStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Studentst__Appro__145C0A3F">
+          <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studentstbl">
+              <PropertyRef Name="ApprovalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeTable__Class__3A81B327">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimeTabletbl" Type="Self.TimeTabletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeTabletbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeTable__Subje__3B75D760">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimeTabletbl" Type="Self.TimeTabletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeTabletbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB37ModelStoreContainer">
+          <EntitySet Name="ActiveStatustbl" EntityType="Self.ActiveStatustbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Adminstratortbl" EntityType="Self.Adminstratortbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalStatustbl" EntityType="Self.ApprovalStatustbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceMarkingtbl" EntityType="Self.AttendanceMarkingtbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttendanceStatustbl" EntityType="Self.AttendanceStatustbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassSubjecttbl" EntityType="Self.ClassSubjecttbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classtbl" EntityType="Self.Classtbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leavestbl" EntityType="Self.Leavestbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Markingstbl" EntityType="Self.Markingstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parentstbl" EntityType="Self.Parentstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ParentStudenttbl" EntityType="Self.ParentStudenttbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SchoolEventstbl" EntityType="Self.SchoolEventstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentClasstbl" EntityType="Self.StudentClasstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentLefttbl" EntityType="Self.StudentLefttbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studentstbl" EntityType="Self.Studentstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjectstbl" EntityType="Self.Subjectstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Termstbl" EntityType="Self.Termstbl" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeTabletbl" EntityType="Self.TimeTabletbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Attendanc__Atten__2F10007B" Association="Self.FK__Attendanc__Atten__2F10007B">
+            <End Role="AttendanceStatustbl" EntitySet="AttendanceStatustbl" />
+            <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attendanc__Stude__2E1BDC42" Association="Self.FK__Attendanc__Stude__2E1BDC42">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassSubj__Class__1ED998B2" Association="Self.FK__ClassSubj__Class__1ED998B2">
+            <End Role="Classtbl" EntitySet="Classtbl" />
+            <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassSubj__Subje__1FCDBCEB" Association="Self.FK__ClassSubj__Subje__1FCDBCEB">
+            <End Role="Subjectstbl" EntitySet="Subjectstbl" />
+            <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leavestbl__Paren__33D4B598" Association="Self.FK__Leavestbl__Paren__33D4B598">
+            <End Role="Parentstbl" EntitySet="Parentstbl" />
+            <End Role="Leavestbl" EntitySet="Leavestbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leavestbl__Stude__34C8D9D1" Association="Self.FK__Leavestbl__Stude__34C8D9D1">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="Leavestbl" EntitySet="Leavestbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Class__403A8C7D" Association="Self.FK__Markingst__Class__403A8C7D">
+            <End Role="Classtbl" EntitySet="Classtbl" />
+            <End Role="Markingstbl" EntitySet="Markingstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Stude__4222D4EF" Association="Self.FK__Markingst__Stude__4222D4EF">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="Markingstbl" EntitySet="Markingstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Subje__412EB0B6" Association="Self.FK__Markingst__Subje__412EB0B6">
+            <End Role="Subjectstbl" EntitySet="Subjectstbl" />
+            <End Role="Markingstbl" EntitySet="Markingstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__TermI__4316F928" Association="Self.FK__Markingst__TermI__4316F928">
+            <End Role="Termstbl" EntitySet="Termstbl" />
+            <End Role="Markingstbl" EntitySet="Markingstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parentstb__Appro__182C9B23" Association="Self.FK__Parentstb__Appro__182C9B23">
+            <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
+            <End Role="Parentstbl" EntitySet="Parentstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParentStu__Paren__276EDEB3" Association="Self.FK__ParentStu__Paren__276EDEB3">
+            <End Role="Parentstbl" EntitySet="Parentstbl" />
+            <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParentStu__Stude__267ABA7A" Association="Self.FK__ParentStu__Stude__267ABA7A">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCl__Class__22AA2996" Association="Self.FK__StudentCl__Class__22AA2996">
+            <End Role="Classtbl" EntitySet="Classtbl" />
+            <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCl__Stude__239E4DCF" Association="Self.FK__StudentCl__Stude__239E4DCF">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentLe__Stude__37A5467C" Association="Self.FK__StudentLe__Stude__37A5467C">
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+            <End Role="StudentLefttbl" EntitySet="StudentLefttbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Studentst__Activ__15502E78" Association="Self.FK__Studentst__Activ__15502E78">
+            <End Role="ActiveStatustbl" EntitySet="ActiveStatustbl" />
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Studentst__Appro__145C0A3F" Association="Self.FK__Studentst__Appro__145C0A3F">
+            <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
+            <End Role="Studentstbl" EntitySet="Studentstbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeTable__Class__3A81B327" Association="Self.FK__TimeTable__Class__3A81B327">
+            <End Role="Classtbl" EntitySet="Classtbl" />
+            <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeTable__Subje__3B75D760" Association="Self.FK__TimeTable__Subje__3B75D760">
+            <End Role="Subjectstbl" EntitySet="Subjectstbl" />
+            <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB37Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActiveStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Studentstbls" Relationship="Self.FK__Studentst__Activ__15502E78" FromRole="ActiveStatustbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="Adminstratortbl">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ApprovalStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Parentstbls" Relationship="Self.FK__Parentstb__Appro__182C9B23" FromRole="ApprovalStatustbl" ToRole="Parentstbl" />
+          <NavigationProperty Name="Studentstbls" Relationship="Self.FK__Studentst__Appro__145C0A3F" FromRole="ApprovalStatustbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="AttendanceMarkingtbl">
+          <Key>
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="AttendanceDate" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AttendanceStatusId" Type="Int32" />
+          <NavigationProperty Name="AttendanceStatustbl" Relationship="Self.FK__Attendanc__Atten__2F10007B" FromRole="AttendanceMarkingtbl" ToRole="AttendanceStatustbl" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Attendanc__Stude__2E1BDC42" FromRole="AttendanceMarkingtbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="AttendanceStatustbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttendanceMarkingtbls" Relationship="Self.FK__Attendanc__Atten__2F10007B" FromRole="AttendanceStatustbl" ToRole="AttendanceMarkingtbl" />
+        </EntityType>
+        <EntityType Name="ClassSubjecttbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="SubjectId" Type="Int32" />
+          <NavigationProperty Name="Classtbl" Relationship="Self.FK__ClassSubj__Class__1ED998B2" FromRole="ClassSubjecttbl" ToRole="Classtbl" />
+          <NavigationProperty Name="Subjectstbl" Relationship="Self.FK__ClassSubj__Subje__1FCDBCEB" FromRole="ClassSubjecttbl" ToRole="Subjectstbl" />
+        </EntityType>
+        <EntityType Name="Classtbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClassSubjecttbls" Relationship="Self.FK__ClassSubj__Class__1ED998B2" FromRole="Classtbl" ToRole="ClassSubjecttbl" />
+          <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__Class__403A8C7D" FromRole="Classtbl" ToRole="Markingstbl" />
+          <NavigationProperty Name="StudentClasstbls" Relationship="Self.FK__StudentCl__Class__22AA2996" FromRole="Classtbl" ToRole="StudentClasstbl" />
+          <NavigationProperty Name="TimeTabletbls" Relationship="Self.FK__TimeTable__Class__3A81B327" FromRole="Classtbl" ToRole="TimeTabletbl" />
+        </EntityType>
+        <EntityType Name="Leavestbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="LeaveDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateFrom" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="ApprovalStatusId" Type="Int32" />
+          <NavigationProperty Name="Parentstbl" Relationship="Self.FK__Leavestbl__Paren__33D4B598" FromRole="Leavestbl" ToRole="Parentstbl" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Leavestbl__Stude__34C8D9D1" FromRole="Leavestbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="Markingstbl">
+          <Key>
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="SubjectId" />
+            <PropertyRef Name="StudentId" />
+            <PropertyRef Name="TermId" />
+          </Key>
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="TotalMarks" Type="Double" />
+          <Property Name="ObtainedMarks" Type="Double" />
+          <Property Name="TermId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Classtbl" Relationship="Self.FK__Markingst__Class__403A8C7D" FromRole="Markingstbl" ToRole="Classtbl" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Markingst__Stude__4222D4EF" FromRole="Markingstbl" ToRole="Studentstbl" />
+          <NavigationProperty Name="Subjectstbl" Relationship="Self.FK__Markingst__Subje__412EB0B6" FromRole="Markingstbl" ToRole="Subjectstbl" />
+          <NavigationProperty Name="Termstbl" Relationship="Self.FK__Markingst__TermI__4316F928" FromRole="Markingstbl" ToRole="Termstbl" />
+        </EntityType>
+        <EntityType Name="Parentstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PrntPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalStatusId" Type="Int32" />
+          <Property Name="MailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ApprovalStatustbl" Relationship="Self.FK__Parentstb__Appro__182C9B23" FromRole="Parentstbl" ToRole="ApprovalStatustbl" />
+          <NavigationProperty Name="Leavestbls" Relationship="Self.FK__Leavestbl__Paren__33D4B598" FromRole="Parentstbl" ToRole="Leavestbl" />
+          <NavigationProperty Name="ParentStudenttbls" Relationship="Self.FK__ParentStu__Paren__276EDEB3" FromRole="Parentstbl" ToRole="ParentStudenttbl" />
+        </EntityType>
+        <EntityType Name="ParentStudenttbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <NavigationProperty Name="Parentstbl" Relationship="Self.FK__ParentStu__Paren__276EDEB3" FromRole="ParentStudenttbl" ToRole="Parentstbl" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__ParentStu__Stude__267ABA7A" FromRole="ParentStudenttbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="SchoolEventstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EventDate" Type="DateTime" Precision="3" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+          <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Charges" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StudentClasstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="StudentId" Type="Int32" />
+          <NavigationProperty Name="Classtbl" Relationship="Self.FK__StudentCl__Class__22AA2996" FromRole="StudentClasstbl" ToRole="Classtbl" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__StudentCl__Stude__239E4DCF" FromRole="StudentClasstbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="StudentLefttbl">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="DateLeft" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Studentstbl" Relationship="Self.FK__StudentLe__Stude__37A5467C" FromRole="StudentLefttbl" ToRole="Studentstbl" />
+        </EntityType>
+        <EntityType Name="Studentstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StdPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovalStatusId" Type="Int32" />
+          <Property Name="ActiveStatusId" Type="Int32" />
+          <NavigationProperty Name="ActiveStatustbl" Relationship="Self.FK__Studentst__Activ__15502E78" FromRole="Studentstbl" ToRole="ActiveStatustbl" />
+          <NavigationProperty Name="ApprovalStatustbl" Relationship="Self.FK__Studentst__Appro__145C0A3F" FromRole="Studentstbl" ToRole="ApprovalStatustbl" />
+          <NavigationProperty Name="AttendanceMarkingtbls" Relationship="Self.FK__Attendanc__Stude__2E1BDC42" FromRole="Studentstbl" ToRole="AttendanceMarkingtbl" />
+          <NavigationProperty Name="Leavestbls" Relationship="Self.FK__Leavestbl__Stude__34C8D9D1" FromRole="Studentstbl" ToRole="Leavestbl" />
+          <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__Stude__4222D4EF" FromRole="Studentstbl" ToRole="Markingstbl" />
+          <NavigationProperty Name="ParentStudenttbls" Relationship="Self.FK__ParentStu__Stude__267ABA7A" FromRole="Studentstbl" ToRole="ParentStudenttbl" />
+          <NavigationProperty Name="StudentClasstbls" Relationship="Self.FK__StudentCl__Stude__239E4DCF" FromRole="Studentstbl" ToRole="StudentClasstbl" />
+          <NavigationProperty Name="StudentLefttbl" Relationship="Self.FK__StudentLe__Stude__37A5467C" FromRole="Studentstbl" ToRole="StudentLefttbl" />
+        </EntityType>
+        <EntityType Name="Subjectstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClassSubjecttbls" Relationship="Self.FK__ClassSubj__Subje__1FCDBCEB" FromRole="Subjectstbl" ToRole="ClassSubjecttbl" />
+          <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__Subje__412EB0B6" FromRole="Subjectstbl" ToRole="Markingstbl" />
+          <NavigationProperty Name="TimeTabletbls" Relationship="Self.FK__TimeTable__Subje__3B75D760" FromRole="Subjectstbl" ToRole="TimeTabletbl" />
+        </EntityType>
+        <EntityType Name="Termstbl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__TermI__4316F928" FromRole="Termstbl" ToRole="Markingstbl" />
+        </EntityType>
+        <EntityType Name="TimeTabletbl">
+          <Key>
+            <PropertyRef Name="WeeksDay" />
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="WeeksDay" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClassId" Type="Int32" Nullable="false" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <Property Name="LectureTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Classtbl" Relationship="Self.FK__TimeTable__Class__3A81B327" FromRole="TimeTabletbl" ToRole="Classtbl" />
+          <NavigationProperty Name="Subjectstbl" Relationship="Self.FK__TimeTable__Subje__3B75D760" FromRole="TimeTabletbl" ToRole="Subjectstbl" />
+        </EntityType>
+        <Association Name="FK__Studentst__Activ__15502E78">
+          <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActiveStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studentstbl">
+              <PropertyRef Name="ActiveStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parentstb__Appro__182C9B23">
+          <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parentstbl">
+              <PropertyRef Name="ApprovalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Studentst__Appro__145C0A3F">
+          <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Studentstbl">
+              <PropertyRef Name="ApprovalStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attendanc__Atten__2F10007B">
+          <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AttendanceMarkingtbl" Type="Self.AttendanceMarkingtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttendanceStatustbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendanceMarkingtbl">
+              <PropertyRef Name="AttendanceStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Attendanc__Stude__2E1BDC42">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AttendanceMarkingtbl" Type="Self.AttendanceMarkingtbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttendanceMarkingtbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassSubj__Class__1ED998B2">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassSubjecttbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ClassSubj__Subje__1FCDBCEB">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClassSubjecttbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Class__403A8C7D">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCl__Class__22AA2996">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentClasstbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeTable__Class__3A81B327">
+          <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimeTabletbl" Type="Self.TimeTabletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classtbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeTabletbl">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leavestbl__Paren__33D4B598">
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+          <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leavestbl">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Leavestbl__Stude__34C8D9D1">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+          <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leavestbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Stude__4222D4EF">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__Subje__412EB0B6">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Markingst__TermI__4316F928">
+          <End Role="Termstbl" Type="Self.Termstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Markingstbl" Type="Self.Markingstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Termstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Markingstbl">
+              <PropertyRef Name="TermId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParentStu__Paren__276EDEB3">
+          <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+          <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentStudenttbl">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ParentStu__Stude__267ABA7A">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+          <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ParentStudenttbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentCl__Stude__239E4DCF">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentClasstbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StudentLe__Stude__37A5467C">
+          <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentLefttbl" Type="Self.StudentLefttbl" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Studentstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentLefttbl">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TimeTable__Subje__3B75D760">
+          <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TimeTabletbl" Type="Self.TimeTabletbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjectstbl">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeTabletbl">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB37Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActiveStatustbls" EntityType="Self.ActiveStatustbl" />
+          <EntitySet Name="Adminstratortbls" EntityType="Self.Adminstratortbl" />
+          <EntitySet Name="ApprovalStatustbls" EntityType="Self.ApprovalStatustbl" />
+          <EntitySet Name="AttendanceMarkingtbls" EntityType="Self.AttendanceMarkingtbl" />
+          <EntitySet Name="AttendanceStatustbls" EntityType="Self.AttendanceStatustbl" />
+          <EntitySet Name="ClassSubjecttbls" EntityType="Self.ClassSubjecttbl" />
+          <EntitySet Name="Classtbls" EntityType="Self.Classtbl" />
+          <EntitySet Name="Leavestbls" EntityType="Self.Leavestbl" />
+          <EntitySet Name="Markingstbls" EntityType="Self.Markingstbl" />
+          <EntitySet Name="Parentstbls" EntityType="Self.Parentstbl" />
+          <EntitySet Name="ParentStudenttbls" EntityType="Self.ParentStudenttbl" />
+          <EntitySet Name="SchoolEventstbls" EntityType="Self.SchoolEventstbl" />
+          <EntitySet Name="StudentClasstbls" EntityType="Self.StudentClasstbl" />
+          <EntitySet Name="StudentLefttbls" EntityType="Self.StudentLefttbl" />
+          <EntitySet Name="Studentstbls" EntityType="Self.Studentstbl" />
+          <EntitySet Name="Subjectstbls" EntityType="Self.Subjectstbl" />
+          <EntitySet Name="Termstbls" EntityType="Self.Termstbl" />
+          <EntitySet Name="TimeTabletbls" EntityType="Self.TimeTabletbl" />
+          <AssociationSet Name="FK__Studentst__Activ__15502E78" Association="Self.FK__Studentst__Activ__15502E78">
+            <End Role="ActiveStatustbl" EntitySet="ActiveStatustbls" />
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parentstb__Appro__182C9B23" Association="Self.FK__Parentstb__Appro__182C9B23">
+            <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbls" />
+            <End Role="Parentstbl" EntitySet="Parentstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Studentst__Appro__145C0A3F" Association="Self.FK__Studentst__Appro__145C0A3F">
+            <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbls" />
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attendanc__Atten__2F10007B" Association="Self.FK__Attendanc__Atten__2F10007B">
+            <End Role="AttendanceStatustbl" EntitySet="AttendanceStatustbls" />
+            <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Attendanc__Stude__2E1BDC42" Association="Self.FK__Attendanc__Stude__2E1BDC42">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassSubj__Class__1ED998B2" Association="Self.FK__ClassSubj__Class__1ED998B2">
+            <End Role="Classtbl" EntitySet="Classtbls" />
+            <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ClassSubj__Subje__1FCDBCEB" Association="Self.FK__ClassSubj__Subje__1FCDBCEB">
+            <End Role="Subjectstbl" EntitySet="Subjectstbls" />
+            <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Class__403A8C7D" Association="Self.FK__Markingst__Class__403A8C7D">
+            <End Role="Classtbl" EntitySet="Classtbls" />
+            <End Role="Markingstbl" EntitySet="Markingstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCl__Class__22AA2996" Association="Self.FK__StudentCl__Class__22AA2996">
+            <End Role="Classtbl" EntitySet="Classtbls" />
+            <End Role="StudentClasstbl" EntitySet="StudentClasstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeTable__Class__3A81B327" Association="Self.FK__TimeTable__Class__3A81B327">
+            <End Role="Classtbl" EntitySet="Classtbls" />
+            <End Role="TimeTabletbl" EntitySet="TimeTabletbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leavestbl__Paren__33D4B598" Association="Self.FK__Leavestbl__Paren__33D4B598">
+            <End Role="Parentstbl" EntitySet="Parentstbls" />
+            <End Role="Leavestbl" EntitySet="Leavestbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Leavestbl__Stude__34C8D9D1" Association="Self.FK__Leavestbl__Stude__34C8D9D1">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="Leavestbl" EntitySet="Leavestbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Stude__4222D4EF" Association="Self.FK__Markingst__Stude__4222D4EF">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="Markingstbl" EntitySet="Markingstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__Subje__412EB0B6" Association="Self.FK__Markingst__Subje__412EB0B6">
+            <End Role="Subjectstbl" EntitySet="Subjectstbls" />
+            <End Role="Markingstbl" EntitySet="Markingstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Markingst__TermI__4316F928" Association="Self.FK__Markingst__TermI__4316F928">
+            <End Role="Termstbl" EntitySet="Termstbls" />
+            <End Role="Markingstbl" EntitySet="Markingstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParentStu__Paren__276EDEB3" Association="Self.FK__ParentStu__Paren__276EDEB3">
+            <End Role="Parentstbl" EntitySet="Parentstbls" />
+            <End Role="ParentStudenttbl" EntitySet="ParentStudenttbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ParentStu__Stude__267ABA7A" Association="Self.FK__ParentStu__Stude__267ABA7A">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="ParentStudenttbl" EntitySet="ParentStudenttbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentCl__Stude__239E4DCF" Association="Self.FK__StudentCl__Stude__239E4DCF">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="StudentClasstbl" EntitySet="StudentClasstbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StudentLe__Stude__37A5467C" Association="Self.FK__StudentLe__Stude__37A5467C">
+            <End Role="Studentstbl" EntitySet="Studentstbls" />
+            <End Role="StudentLefttbl" EntitySet="StudentLefttbls" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TimeTable__Subje__3B75D760" Association="Self.FK__TimeTable__Subje__3B75D760">
+            <End Role="Subjectstbl" EntitySet="Subjectstbls" />
+            <End Role="TimeTabletbl" EntitySet="TimeTabletbls" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB37ModelStoreContainer" CdmEntityContainer="DB37Entities">
+          <EntitySetMapping Name="ActiveStatustbls">
+            <EntityTypeMapping TypeName="DB37Model.ActiveStatustbl">
+              <MappingFragment StoreEntitySet="ActiveStatustbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adminstratortbls">
+            <EntityTypeMapping TypeName="DB37Model.Adminstratortbl">
+              <MappingFragment StoreEntitySet="Adminstratortbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalStatustbls">
+            <EntityTypeMapping TypeName="DB37Model.ApprovalStatustbl">
+              <MappingFragment StoreEntitySet="ApprovalStatustbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceMarkingtbls">
+            <EntityTypeMapping TypeName="DB37Model.AttendanceMarkingtbl">
+              <MappingFragment StoreEntitySet="AttendanceMarkingtbl">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="AttendanceStatusId" ColumnName="AttendanceStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttendanceStatustbls">
+            <EntityTypeMapping TypeName="DB37Model.AttendanceStatustbl">
+              <MappingFragment StoreEntitySet="AttendanceStatustbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassSubjecttbls">
+            <EntityTypeMapping TypeName="DB37Model.ClassSubjecttbl">
+              <MappingFragment StoreEntitySet="ClassSubjecttbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classtbls">
+            <EntityTypeMapping TypeName="DB37Model.Classtbl">
+              <MappingFragment StoreEntitySet="Classtbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Section" ColumnName="Section" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leavestbls">
+            <EntityTypeMapping TypeName="DB37Model.Leavestbl">
+              <MappingFragment StoreEntitySet="Leavestbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="LeaveDescription" ColumnName="LeaveDescription" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="ApprovalStatusId" ColumnName="ApprovalStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Markingstbls">
+            <EntityTypeMapping TypeName="DB37Model.Markingstbl">
+              <MappingFragment StoreEntitySet="Markingstbl">
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="TotalMarks" ColumnName="TotalMarks" />
+                <ScalarProperty Name="ObtainedMarks" ColumnName="ObtainedMarks" />
+                <ScalarProperty Name="TermId" ColumnName="TermId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parentstbls">
+            <EntityTypeMapping TypeName="DB37Model.Parentstbl">
+              <MappingFragment StoreEntitySet="Parentstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PrntPassword" ColumnName="PrntPassword" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="ApprovalStatusId" ColumnName="ApprovalStatusId" />
+                <ScalarProperty Name="MailAddress" ColumnName="MailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ParentStudenttbls">
+            <EntityTypeMapping TypeName="DB37Model.ParentStudenttbl">
+              <MappingFragment StoreEntitySet="ParentStudenttbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SchoolEventstbls">
+            <EntityTypeMapping TypeName="DB37Model.SchoolEventstbl">
+              <MappingFragment StoreEntitySet="SchoolEventstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventDescription" ColumnName="EventDescription" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Charges" ColumnName="Charges" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentClasstbls">
+            <EntityTypeMapping TypeName="DB37Model.StudentClasstbl">
+              <MappingFragment StoreEntitySet="StudentClasstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentLefttbls">
+            <EntityTypeMapping TypeName="DB37Model.StudentLefttbl">
+              <MappingFragment StoreEntitySet="StudentLefttbl">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="DateLeft" ColumnName="DateLeft" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studentstbls">
+            <EntityTypeMapping TypeName="DB37Model.Studentstbl">
+              <MappingFragment StoreEntitySet="Studentstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="StdPassword" ColumnName="StdPassword" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="ApprovalStatusId" ColumnName="ApprovalStatusId" />
+                <ScalarProperty Name="ActiveStatusId" ColumnName="ActiveStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjectstbls">
+            <EntityTypeMapping TypeName="DB37Model.Subjectstbl">
+              <MappingFragment StoreEntitySet="Subjectstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Termstbls">
+            <EntityTypeMapping TypeName="DB37Model.Termstbl">
+              <MappingFragment StoreEntitySet="Termstbl">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeTabletbls">
+            <EntityTypeMapping TypeName="DB37Model.TimeTabletbl">
+              <MappingFragment StoreEntitySet="TimeTabletbl">
+                <ScalarProperty Name="WeeksDay" ColumnName="WeeksDay" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+                <ScalarProperty Name="LectureTime" ColumnName="LectureTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

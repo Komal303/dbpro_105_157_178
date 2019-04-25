@@ -18,6 +18,79 @@ namespace SmartSchoolSystem.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult LogIn(LogInViewModels login)
+        {
+            DB37Entities db = new DB37Entities();
+            if(HelperClass.account == "Admin")
+            {
+                if(db.Adminstratortbls.Any(t1 => t1.Username.Equals(login.UserName) && db.Adminstratortbls.Any(t2 => t2.AdminPassword.Equals(login.Password))))
+                   {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    HelperClass.account = "";
+                    ViewBag.warn = "Admin with these credentials does not exist";
+                }
+            }
+            else if(HelperClass.account == "Parent")
+            {
+                if (db.Parentstbls.Any(t1 => t1.MailAddress.Equals(login.UserName) && 
+                db.Parentstbls.Where(t4=> t4.MailAddress.Equals(login.UserName)).FirstOrDefault().PrntPassword.Equals(login.Password)) && 
+                    db.Parentstbls.Where(t2 => t2.MailAddress.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    HelperClass.account = "";
+                    ViewBag.warn = "Parent with these credentials does not exist";
+                }
+            }
+            else if (HelperClass.account == "Student")
+            {
+                if (db.Studentstbls.Any(t1 => t1.Username.Equals(login.UserName) &&
+                db.Studentstbls.Where(t4 => t4.Username.Equals(login.UserName)).FirstOrDefault().StdPassword.Equals(login.Password)) &&
+                    db.Studentstbls.Where(t2 => t2.Username.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    HelperClass.account = "";
+                    ViewBag.warn = "Student with these credentials does not exist";
+                }
+            }
+            return View();
+        }
+
+        public int SetAdmin()
+        {
+            HelperClass.account = "Admin";
+            return 0;
+
+
+        }
+        public int SetStudent()
+        {
+            HelperClass.account = "Student";
+            return 0;
+
+        }
+        public int SetParent()
+        {
+            HelperClass.account = "Parent";
+            return 0;
+
+        }
+        public int SetEmpty()
+        {
+            HelperClass.account = "";
+            return 0;
+
+
+        }
         // GET: LogIn/Details/5
         public ActionResult Details(int id)
         {
@@ -96,7 +169,7 @@ namespace SmartSchoolSystem.Controllers
         }
 
         
-        public ActionResult LogInPost(LogIn login)
+        public ActionResult LogInPost(LogInViewModels login)
         {
             
             try
@@ -108,26 +181,11 @@ namespace SmartSchoolSystem.Controllers
                 return View();
             }
         }
-        public ActionResult LogInRequest(LogIn login,string account)
+        public ActionResult LogInRequest(LogInViewModels login,string account)
         {
             return View();
         }
-        public ActionResult SetAdmin()
-        {
-            HelperClass.account = "Admin";
-            return RedirectToAction("Index", "Home");
-        }
-        public ActionResult SetStudent()
-        {
-            HelperClass.account = "Student";
-            return RedirectToAction("Index", "Home");
-
-        }
-        public ActionResult SetParent()
-        {
-            HelperClass.account = "Parent";
-            return RedirectToAction("Index", "Home");
-        }
+     
 
     }
 }

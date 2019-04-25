@@ -6,8 +6,9 @@ using System.Web;
 
 namespace SmartSchoolSystem.Models
 {
-    public class ParentRegistration
+    public class ParentRegistrationViewModels
     {
+        public static ParentRegistrationViewModels p = new ParentRegistrationViewModels();
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

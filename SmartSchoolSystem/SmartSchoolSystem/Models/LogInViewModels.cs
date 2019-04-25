@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SmartSchoolSystem.Models
 {
-    public class LogIn
+    public class LogInViewModels
     {
         [Required]
         [Display(Name = "User Name")]
@@ -14,9 +14,16 @@ namespace SmartSchoolSystem.Models
 
         [Required]
         [Display(Name = "Password")]
-        public string Passward { get; set; }
+        public string Password { get; set; }
 
 
-        public string accountname { get; set; }
+        public accounts accountname { get; set; }
+        
+    }
+    public enum accounts
+    {
+        Admin,
+        Parent,
+        Student
     }
 }
