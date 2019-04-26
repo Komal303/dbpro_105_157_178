@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,8 @@ namespace SmartSchoolSystem.Models
         public static ClassesViewModels sampleclass = new ClassesViewModels();
         public static List<ClassesViewModels> ClassesList = new List<ClassesViewModels>();
         private int id;
+
+        [Required]
         private string name;
 
         public int Id

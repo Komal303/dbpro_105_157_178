@@ -13,21 +13,29 @@ namespace SmartSchoolSystem.Controllers
        
         public ActionResult Index()
         {
-            Event.EventList.Clear();
-            Event e1 = new Event();
-            e1.id = 0;
-            e1.name = "satrangi";
-            e1.description = "fazool";
-            e1.contact = "090078601";
-            e1.date = DateTime.Now;
-            
+            EventViewModel.EventList.Clear();
 
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
+            DB37Entities db = new DB37Entities();
 
-            return View(Event.EventList);
+            //List<EventViewModel> eventLst = new List<EventViewModel>();
+
+            foreach (SchoolEventstbl e in db.SchoolEventstbls)
+            {
+                EventViewModel eventObj = new EventViewModel();
+                eventObj.name = e.Title;
+                eventObj.description = e.EventDescription;
+                eventObj.contact = e.Contact;
+                eventObj.date = e.EventDate;
+                eventObj.startTime = e.StartTime;
+                eventObj.endTime = e.EndTime;
+                eventObj.charges = e.Charges;
+                eventObj.id = e.Id;
+                EventViewModel.EventList.Add(eventObj);
+            }
+
+
+
+            return View(EventViewModel.EventList);
         }
 
         public ActionResult About()

@@ -15,12 +15,12 @@ namespace SmartSchoolSystem
     public partial class Leavestbl
     {
         public int Id { get; set; }
-        public Nullable<int> ParentId { get; set; }
-        public Nullable<int> StudentId { get; set; }
+        public int ParentId { get; set; }
+        public int StudentId { get; set; }
         public string LeaveDescription { get; set; }
-        public Nullable<System.DateTime> DateFrom { get; set; }
-        public Nullable<System.DateTime> DateEnd { get; set; }
-        public Nullable<int> ApprovalStatusId { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateEnd { get; set; }
+        public int ApprovalStatusId { get; set; }
     
         public virtual Parentstbl Parentstbl { get; set; }
         public virtual Studentstbl Studentstbl { get; set; }

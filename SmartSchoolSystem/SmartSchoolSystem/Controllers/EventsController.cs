@@ -13,21 +13,40 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult Index()
         {
 
-            Event.EventList.Clear();
-            Event e1 = new Event();
-            e1.id = 0;
-            e1.name = "satrangi";
-            e1.description = "fazool";
-            e1.contact = "090078601";
-            e1.date = DateTime.Now;
+            EventViewModel.EventList.Clear();
+            //Event e1 = new Event();
+            //e1.id = 0;
+            //e1.name = "satrangi";
+            //e1.description = "fazool";
+            //e1.contact = "090078601";
+            //e1.date = DateTime.Now;
 
 
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
-            Event.EventList.Add(e1);
+            //Event.EventList.Add(e1);
+            //Event.EventList.Add(e1);
+            //Event.EventList.Add(e1);
+            //Event.EventList.Add(e1);
 
-            return View(Event.EventList);
+            DB37Entities db = new DB37Entities();
+
+            //List<EventViewModel> eventLst = new List<EventViewModel>();
+
+            foreach (SchoolEventstbl e in db.SchoolEventstbls)
+            {
+                EventViewModel eventObj = new EventViewModel();
+                eventObj.name = e.Title;
+                eventObj.description = e.EventDescription;
+                eventObj.contact = e.Contact;
+                eventObj.date = e.EventDate;
+                eventObj.startTime = e.StartTime;
+                eventObj.endTime = e.EndTime;
+                eventObj.charges = e.Charges;
+                EventViewModel.EventList.Add(eventObj);
+            }
+
+
+
+            return View(EventViewModel.EventList);
 
         
         }
@@ -46,36 +65,72 @@ namespace SmartSchoolSystem.Controllers
 
         // POST: Events/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(EventViewModel obj)
         {
             try
             {
                 // TODO: Add insert logic here
+                DB37Entities db = new DB37Entities();
+
+                SchoolEventstbl e1 = new SchoolEventstbl();
+                e1.Title = obj.name;
+                e1.EventDescription = obj.description;
+                e1.EventDate = obj.date;
+                e1.StartTime = obj.startTime;
+                e1.EndTime = obj.endTime;
+                e1.Contact = obj.contact;
+                e1.Charges = obj.charges;
+
+                db.SchoolEventstbls.Add(e1);
+                db.SaveChanges();
+
 
                 return RedirectToAction("Index","Events");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                throw (ex);
+                //return View();
             }
         }
 
         // GET: Events/Edit/5
         public ActionResult Edit(int id)
         {
-            Event.SampleEvent = Event.EventList[1];
-            return View(Event.SampleEvent);
+            DB37Entities db = new DB37Entities();
+
+            EventViewModel eventobj = new EventViewModel();
+
+            eventobj.name = db.SchoolEventstbls.Find(id).Title;
+            eventobj.description = db.SchoolEventstbls.Find(id).EventDescription;
+            eventobj.contact = db.SchoolEventstbls.Find(id).Contact;
+            eventobj.date = db.SchoolEventstbls.Find(id).EventDate;
+            eventobj.startTime = db.SchoolEventstbls.Find(id).StartTime;
+            eventobj.endTime = db.SchoolEventstbls.Find(id).EndTime;
+            eventobj.charges = db.SchoolEventstbls.Find(id).Charges;
+
+            return View(eventobj);
         }
 
         // POST: Events/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, EventViewModel eventObj)
         {
             try
             {
-                // TODO: Add update logic here
+                DB37Entities db = new DB37Entities();
 
-                return RedirectToAction("Index");
+                db.SchoolEventstbls.Find(id).Title = eventObj.name;
+                db.SchoolEventstbls.Find(id).EventDescription = eventObj.description;
+                db.SchoolEventstbls.Find(id).Contact = eventObj.contact;
+                db.SchoolEventstbls.Find(id).EventDate = eventObj.date;
+                db.SchoolEventstbls.Find(id).StartTime = eventObj.startTime;
+                db.SchoolEventstbls.Find(id).EndTime = eventObj.endTime;
+                db.SchoolEventstbls.Find(id).Charges = eventObj.charges;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "Events");
             }
             catch
             {
@@ -87,7 +142,11 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult Delete(int id)
         {
 
-            Event.EventList.RemoveAt(id);
+            DB37Entities db = new DB37Entities();
+
+            db.SchoolEventstbls.Remove(db.SchoolEventstbls.Find(id));
+            db.SaveChanges();
+
             return RedirectToAction("Index", "Events");
         }
 

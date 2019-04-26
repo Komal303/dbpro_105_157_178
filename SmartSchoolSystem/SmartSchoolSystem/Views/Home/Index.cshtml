@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartSchoolSystem.Models.Event>
+﻿@model IEnumerable<SmartSchoolSystem.Models.EventViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -65,16 +65,18 @@
                             <span class="icons c3"><i class="fa fa-trophy"></i></span> <div class="box-area">
                                 <h3>@item.name</h3> 
                             <p>@item.description</div>
+                            <p>@item.id</p>
                         </div>
-                    }
+
                     <div class="aligncenter">
 
                         <br />
                         <br />
                         <div style="padding-top:300px;">
-                            <input type="button" value="See All" onclick="location.href='@Url.Action("Index", "Events")'" style="background-color:black;border-color:black;color:white;" />
+                            <input type="button" value="See All" onclick="location.href='@Url.Action("Index", "Events", new { id = item.id })'" style="background-color:black;border-color:black;color:white;" />
                         </div>
                         </div>
+                    }
                 </div>
             </div>
         </div>

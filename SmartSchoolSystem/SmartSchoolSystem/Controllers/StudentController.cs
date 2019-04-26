@@ -29,9 +29,10 @@ namespace SmartSchoolSystem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            if(HelperClass.account != "Parent")
+            Parentstbl parent = new Parentstbl();
+            if (HelperClass.account != "Parent")
             {
-                Parentstbl parent = new Parentstbl();
+                
                 parent.FirstName = ParentRegistrationViewModels.p.FirstName;
 
                 parent.LastName = ParentRegistrationViewModels.p.LastName;
@@ -60,6 +61,18 @@ namespace SmartSchoolSystem.Controllers
 
             
             db.SaveChanges();
+
+            DB37Entities db2 = new DB37Entities();
+
+
+            ParentStudenttbl pstbl = new ParentStudenttbl();
+            pstbl.StudentId = db2.Studentstbls.Where(t => t.Username == student.Username).FirstOrDefault().Id;
+            pstbl.ParentId = db2.Parentstbls.Where(t => t.MailAddress == parent.MailAddress).FirstOrDefault().Id;
+
+            db2.ParentStudenttbls.Add(pstbl);
+
+            db2.SaveChanges();
+            
             
             return RedirectToAction("Index","Home");
         }

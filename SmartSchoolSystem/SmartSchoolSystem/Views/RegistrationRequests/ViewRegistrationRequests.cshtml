@@ -1,51 +1,31 @@
-﻿@model IEnumerable<SmartSchoolSystem.Models.RegistrationRequests>
+﻿@model IEnumerable<SmartSchoolSystem.Models.RegistrationRequestsViewModel>
+
 @{
     ViewBag.Title = "ViewRegistrationRequests";
 }
-<h2 style="text-align:center; padding-bottom:20px;">Registration Requests</h2>
-<div class="text-center" style="border: 5px solid #000000; border-radius: 5px; padding: 10px; width: 80%; height: auto; margin: auto;">
-    
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.designation)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th style="padding-left:30px;">
-                    @Html.DisplayNameFor(model => model.status)
-                </th>
-                
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.designation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @*@Html.DisplayFor(modelItem => item.status)*@
-                        <button type="submit">@Html.ActionLink("Approve", "ApproveRegistrationRequests", new { id = item.id })</button>
 
-                        @*@Html.DisplayFor(modelItem => item.status)*@
-                        <button type="submit">@Html.ActionLink("Decline", "ApproveRegistrationRequests", new { id = item.id })</button>
-                    </td>
-                    @*<td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-                        </td>*@
-                </tr>
-            }
-        </table>
+<h2 class="text-center">Registration Requests</h2>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="text-center" style="border: 5px solid #000000; border-radius: 5px; padding: 10px; width: 80%; height: auto; margin: auto;">
+            <span class="icons c3"><i class="fa fa-trophy"></i></span>
+            <div class="box-area">
+                <h3>Parent Name: @item.parentName</h3>
+                <p>Parent Id: @item.parentId</p>
+                <p>Student Id: @item.studentId</p>
+                <p>Student Name: @item.studentName</p>
+                <br />
+                <div>
+                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("ApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId })>Approve</a>
+                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("DisapproveApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId })>Disapprove</a>
+                </div>
+            </div>
         </div>
+        <br />
+    }
+}
+
+

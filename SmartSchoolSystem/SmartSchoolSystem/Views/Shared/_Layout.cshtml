@@ -89,9 +89,15 @@
                     <li class="elements">@Html.ActionLink("Students Left", "ViewActiveStudents", "StudentsLeft")</li>
                     <li class="elements">@Html.ActionLink("Student Marking", "Mark", "StudentMarking")</li>
 }
-                    @if (HelperClass.account != null && HelperClass.account != "")
+                    @if (HelperClass.account == "Parent")
+                    {
+                        <li>@Html.ActionLink("Apply for leave", "Create", "ApplyForLeave")</li>
+                        <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
+                    }
+                    else if (HelperClass.account != null && HelperClass.account != "")
                     {
                         <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
+                        
                     }
                 </ul>
             </nav>
