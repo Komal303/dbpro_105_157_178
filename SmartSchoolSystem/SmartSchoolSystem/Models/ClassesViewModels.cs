@@ -13,6 +13,7 @@ namespace SmartSchoolSystem.Models
         private int id;
 
         [Required]
+        [Display(Name = "Name")]
         private string name;
 
         public int Id

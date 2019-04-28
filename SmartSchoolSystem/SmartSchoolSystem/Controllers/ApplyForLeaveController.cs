@@ -29,6 +29,7 @@ namespace SmartSchoolSystem.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+            
             return View();
         }
 
@@ -42,6 +43,12 @@ namespace SmartSchoolSystem.Controllers
                 if (HelperClass.account != "Parent")
                 {
                     return RedirectToAction("Index", "Home");
+                }
+                ApplyForLeaveViewModel a = new ApplyForLeaveViewModel();
+                if (a.invalidRegistrationNumber(Obj.regNo))
+                {
+                    ViewBag.warn = "Invalid Registration Number (SSS-X)";
+                    return View();
                 }
                 // TODO: Add insert logic here
 

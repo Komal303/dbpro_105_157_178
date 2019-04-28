@@ -170,7 +170,7 @@ namespace SmartSchoolSystem.Controllers
 
             using (MailMessage mail = new MailMessage(from1, email))
             {
-                mail.Subject = "Leave Requestion";
+                mail.Subject = "Leave Request";
                 mail.Body = "You leave is approved";
                 //mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
                 mail.IsBodyHtml = false;

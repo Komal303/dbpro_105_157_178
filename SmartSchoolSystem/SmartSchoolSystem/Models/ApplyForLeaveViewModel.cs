@@ -16,12 +16,14 @@ namespace SmartSchoolSystem.Models
 
         [Required]
         [Display(Name = "Parent Email")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string parentEmail { get; set; }
 
         public int studentId { get; set; }
 
         [Required]
         [Display(Name = "Student Name")]
+        [RegularExpression("^([a-zA-Z0-9 .&'-]+)$", ErrorMessage = "Invalid Student Name")]
         public string studentName { get; set; }
 
         [Required]
@@ -41,5 +43,15 @@ namespace SmartSchoolSystem.Models
         [DataType(DataType.Date)]
         [Display(Name = "To")]
         public DateTime to { get; set; }
+
+
+        public bool invalidRegistrationNumber(string regNo)
+        {
+            if (regNo[0] != 'S' || regNo[1] != 'S' || regNo[2] != 's' || regNo[3] != '-' || char.IsLetter(regNo[4]))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

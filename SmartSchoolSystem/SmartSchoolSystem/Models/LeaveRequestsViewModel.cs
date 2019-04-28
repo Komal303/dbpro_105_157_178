@@ -14,24 +14,18 @@ namespace SmartSchoolSystem.Models
 
         public int parentId { get; set; }
 
-        [Required]
         public string parentEmail { get; set; }
 
         public int studentId { get; set; }
 
-        [Required]
         public string studentName { get; set; }
 
-        [Required]
         public string leaveDescription { get; set; }
 
-        [Required]
         public string regNo { get; set; }
 
-        [Required]
         public DateTime dateFrom { get; set; }
 
-        [Required]
         public DateTime dateTo { get; set; }
     }
 }

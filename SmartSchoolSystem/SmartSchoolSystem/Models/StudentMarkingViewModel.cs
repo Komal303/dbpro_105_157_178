@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,8 @@ namespace SmartSchoolSystem.Models
 
         public int totalMarks { get; set; }
 
+        [Required]
+        [RegularExpression("([0-9]+)")]
         public int obtainedMarks { get; set; }
     }
 }
