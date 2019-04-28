@@ -22,13 +22,15 @@ namespace SmartSchoolSystem.Models
         [Display(Name = "Registration Number")]
         public string RegistrationNumber { get; set; }
 
-
+        [Required]
+        [Display(Name = "Username")]
         public string Username { get; set; }
         [Required]
         [Display(Name = "Password")]
         public string StdPassword { get; set; }
 
-
+        [Required]
+        [Display(Name = "CNIC/B-Form#")]
         public string CNIC { get; set; }
 
 

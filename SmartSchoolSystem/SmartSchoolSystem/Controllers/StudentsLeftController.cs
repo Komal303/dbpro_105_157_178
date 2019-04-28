@@ -18,34 +18,94 @@ namespace SmartSchoolSystem.Controllers
 
         public ActionResult ViewActiveStudents()
         {
+
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             StudentsLeftViewModel.studentList.Clear();
+           
+            DB37Entities db = new DB37Entities();
+            List<string> myclasslist = new List<string>();
+            foreach (Classtbl c in db.Classtbls)
+            {
+                myclasslist.Add(c.Section);
+            }
+            ViewBag.Options = myclasslist;
 
-            StudentsLeftViewModel studentsLeft = new StudentsLeftViewModel();
-            studentsLeft.id = 1;
-            studentsLeft.studentId = 1;
-            studentsLeft.classId = 1;
-            studentsLeft.className = "10th A";
-            studentsLeft.studentName = "Abc";
-            studentsLeft.studentRegNo = "2016-CS-105";
-            StudentsLeftViewModel.studentList.Add(studentsLeft);
+            int activestatusid = db.ActiveStatustbls.Where(t1 => t1.Name == "Active").FirstOrDefault().Id;
+            foreach(StudentClasstbl sc in db.StudentClasstbls)
+            {
+                if(db.Studentstbls.Any(t=> t.ActiveStatusId == activestatusid && t.Id == sc.Id))
+                {
+                    StudentsLeftViewModel studentsLeft = new StudentsLeftViewModel();
+                    studentsLeft.classId = sc.ClassId;
+                    studentsLeft.className = db.Classtbls.Where(t1 => t1.Id == studentsLeft.classId).FirstOrDefault().Section;
+                    studentsLeft.studentId = sc.StudentId;
+                    studentsLeft.studentName = db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().FirstName + " " + db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().LastName;
+                    studentsLeft.studentRegNo = db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().RegistrationNumber;
+                    StudentsLeftViewModel.studentList.Add(studentsLeft);
+                }
+            }
+          
 
-            StudentsLeftViewModel studentsLeft2 = new StudentsLeftViewModel();
-            studentsLeft2.id = 2;
-            studentsLeft2.studentId = 2;
-            studentsLeft2.classId = 1;
-            studentsLeft2.className = "10th A";
-            studentsLeft2.studentName = "def";
-            studentsLeft2.studentRegNo = "2016-CS-106";
-            StudentsLeftViewModel.studentList.Add(studentsLeft2);
+            return View(StudentsLeftViewModel.studentList);
+        }
+        [HttpPost]
+        public ActionResult ViewActiveStudents(FormCollection form)
+        {
+
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            StudentsLeftViewModel.studentList.Clear();
+            DB37Entities db = new DB37Entities();
+            List<string> myclasslist = new List<string>();
+            foreach (Classtbl c in db.Classtbls)
+            {
+                myclasslist.Add(c.Section);
+            }
+            ViewBag.Options = myclasslist;
+
+            string classname = form["Classlist"].ToString();
+            ViewBag.Classname = classname;
+            int classid = db.Classtbls.Where(t => t.Section.Equals(classname)).FirstOrDefault().Id;
+            int activestatusid = db.ActiveStatustbls.Where(t1 => t1.Name == "Active").FirstOrDefault().Id;
+            foreach (StudentClasstbl sc in db.StudentClasstbls)
+            {
+                if (db.Studentstbls.Any(t => t.ActiveStatusId == activestatusid && t.Id == sc.Id) && sc.ClassId==classid)
+                {
+
+                    StudentsLeftViewModel studentsLeft = new StudentsLeftViewModel();
+                    studentsLeft.classId = sc.ClassId;
+                    studentsLeft.className = db.Classtbls.Where(t1 => t1.Id == studentsLeft.classId).FirstOrDefault().Section;
+                    studentsLeft.studentId = sc.StudentId;
+                    studentsLeft.studentName = db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().FirstName + " " + db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().LastName;
+                    studentsLeft.studentRegNo = db.Studentstbls.Where(t2 => t2.Id == studentsLeft.studentId).FirstOrDefault().RegistrationNumber;
+                    StudentsLeftViewModel.studentList.Add(studentsLeft);
+                }
+            }
+
 
             return View(StudentsLeftViewModel.studentList);
         }
 
         public ActionResult InactiveStudents(int id)
         {
-            StudentsLeftViewModel.studentList.RemoveAll(x => x.id == id);
-
-            return View(StudentsLeftViewModel.studentList);
+            if(HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            DB37Entities db = new DB37Entities();
+            int inactivestatusid = db.ActiveStatustbls.Where(t1 => t1.Name == "Inactive").FirstOrDefault().Id;
+            db.Studentstbls.Where(t => t.Id == id).FirstOrDefault().ActiveStatusId = inactivestatusid;
+            StudentLefttbl st = new StudentLefttbl();
+            st.StudentId = id;
+            st.DateLeft = DateTime.Now.Date;
+            db.StudentLefttbls.Add(st);
+            db.SaveChanges();
+            return RedirectToAction("ViewActiveStudents","StudentsLeft");
         }
 
         // GET: StudentsLeft/Details/5

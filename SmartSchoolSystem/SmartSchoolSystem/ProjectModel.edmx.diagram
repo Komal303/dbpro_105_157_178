@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79f0d24d78974413bcef6097e2d04c1d" Name="Diagram1">
+      <Diagram DiagramId="e13b5cf7bce143e8a143e1212ade0031" Name="Diagram1">
         <EntityTypeShape EntityType="DB37Model.ActiveStatustbl" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB37Model.Adminstratortbl" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB37Model.ApprovalStatustbl" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
@@ -23,26 +23,26 @@
         <EntityTypeShape EntityType="DB37Model.Subjectstbl" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DB37Model.Termstbl" Width="1.5" PointX="6" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB37Model.TimeTabletbl" Width="1.5" PointX="11.25" PointY="11.625" IsExpanded="true" />
-        <AssociationConnector Association="DB37Model.FK__Studentst__Activ__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Parentstb__Appro__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Studentst__Appro__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Attendanc__Atten__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Attendanc__Stude__412EB0B6" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__ClassSubj__Class__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__ClassSubj__Subje__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Markingst__Class__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__StudentCl__Class__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__TimeTable__Class__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Leavestbl__Paren__46E78A0C" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Leavestbl__Stude__47DBAE45" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Markingst__Stude__5535A963" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Markingst__Subje__5441852A" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__Markingst__TermI__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__ParentStu__Paren__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__ParentStu__Stude__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__StudentCl__Stude__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__StudentLe__Stude__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="DB37Model.FK__TimeTable__Subje__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Studentst__Activ__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Parentstb__Appro__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Studentst__Appro__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Attendanc__Atten__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Attendanc__Stude__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__ClassSubj__Class__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__ClassSubj__Subje__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Markingst__Class__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__StudentCl__Class__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__TimeTable__Class__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Leavestbl__Paren__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Leavestbl__Stude__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Markingst__Stude__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Markingst__Subje__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__Markingst__TermI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__ParentStu__Paren__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__ParentStu__Stude__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__StudentCl__Stude__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__StudentLe__Stude__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DB37Model.FK__TimeTable__Subje__3B75D760" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

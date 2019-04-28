@@ -327,7 +327,7 @@ INSERT INTO AttendanceStatustbl(Name) VALUES ('Leave')
 INSERT INTO ApprovalStatustbl(Name) VALUES ('pending')
 INSERT INTO ApprovalStatustbl(Name) VALUES ('approved')
 
-INSERT INTO ActiveStatustbl(Name) VALUES ('Inavtice')
+INSERT INTO ActiveStatustbl(Name) VALUES ('Inactive')
 INSERT INTO ActiveStatustbl(Name) VALUES ('Active')
 
 

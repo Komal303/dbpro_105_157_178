@@ -13,6 +13,7 @@ namespace SmartSchoolSystem.Controllers
         // GET: TimeTable
         public ActionResult Index()
         {
+
             TimeTableIndexViewModels.indextimetable.Clear();
             DB37Entities db = new DB37Entities();
             List<string> classlist = new List<string>();

@@ -18,6 +18,10 @@ namespace SmartSchoolSystem.Controllers
 
         public ActionResult StudentRegistration()
         {
+            if (HelperClass.account != "Parent" && ParentRegistrationViewModels.p.Email == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DB37Entities db = new DB37Entities();
             List<string> classes = new List<string>();
             foreach(Classtbl c in db.Classtbls)

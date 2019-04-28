@@ -20,6 +20,11 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult ApproveRegistrationRequests(int id, int sid)
         {
 
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             DB37Entities db = new DB37Entities();
 
             //int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
@@ -76,6 +81,10 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult DisapproveApproveRegistrationRequests(int id, int sid)
         {
 
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DB37Entities db = new DB37Entities();
 
             //int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
@@ -148,6 +157,11 @@ namespace SmartSchoolSystem.Controllers
 
         public ActionResult ViewRegistrationRequests()
         {
+
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             RegistrationRequestsViewModel.RequestList.Clear();
 
             DB37Entities db = new DB37Entities();
@@ -258,6 +272,8 @@ namespace SmartSchoolSystem.Controllers
         {
             try
             {
+
+                
                 string from1 = "smartschoolsystem0@gmail.com";
                 GmailViewModel g = new GmailViewModel();
                 string email1 = g.email;

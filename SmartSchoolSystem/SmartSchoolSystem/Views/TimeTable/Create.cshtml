@@ -16,47 +16,63 @@
                 <h4 style="position: relative; left: 38%;">Create Time Table</h4>
                 
                     <div style="padding-left:20px;">
-                        <div style="padding-left:150px;">
-                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Class: </label> &nbsp;
-
-
-                            <select id="Classlist" name="Classlist" style="width:140px; align-self:center;" class="form-control">
-
-                                @foreach (var o in ViewBag.Options)
-                                {
-                                    <option value="@o.ToString()">@o.ToString()</option>
-                                }
-                            </select>
+                        
+                        <div class="form-group">
+                            <label for="Classlist" class="control-label col-md-2">Class: </label>
+                            <div class="col-md-10">
+                                <select id="Classlist" name="Classlist" class="form-control">
+                                    @foreach (var o in ViewBag.Options)
+                                    {
+                                        <option value="@o.ToString()">@o.ToString()</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                        <div style="padding-left:150px;">
-                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Subject: </label> &nbsp;
-                            <select id="subjectList" name="subjectList" style="width:140px; " class="form-control">
 
-                                @foreach (var o in new SelectList(""))
-                                {
-                                    <option value="@o.ToString()">@o.ToString()</option>
-                                }
-                            </select>
+
+
+
+                        <div class="form-group">
+                            <label for="subjectList" class="control-label col-md-2">Subject: </label>
+                            <div class="col-md-10">
+                                <select id="subjectList" name="subjectList" class="form-control">
+                                    @foreach (var o in new SelectList(""))
+                                    {
+                                        <option value="@o.ToString()">@o.ToString()</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                        <div style="padding-left:150px;">
-                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Day: </label> &nbsp;
-                            <select id="daylist" name="daylist" style="width:140px ;padding-left:20px;" class="form-control">
+                       
 
-                                @foreach (var o in ViewBag.Days)
-                                {
-                                    <option value="@o.ToString()">@o.ToString()</option>
-                                }
-                            </select>
+
+                        <div class="form-group">
+                            <label for="daylist" class="control-label col-md-2">Day: </label>
+                            <div class="col-md-10">
+                                <select id="daylist" name="daylist" class="form-control">
+                                    @foreach (var o in ViewBag.Days)
+                                    {
+                                        <option value="@o.ToString()">@o.ToString()</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                        <div style="padding-left:150px;">
-                            <label class="control-label col-md-2 required" , style="width: auto; position: relative; right: 4%;">Time: </label> &nbsp;
-                            <select id="timelist" name="timelist" style="width:140px;padding-left:10px;" class="form-control">
 
-                                @foreach (var o in ViewBag.Time)
-                                {
-                                    <option value="@o.ToString()">@o.ToString()</option>
-                                }
-                            </select>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="timelist" class="control-label col-md-2">Time:</label>
+                            <div class="col-md-10">
+                                <select id="timelist" name="timelist" class="form-control">
+                                    @foreach (var o in ViewBag.Time)
+                                    {
+                                        <option value="@o.ToString()">@o.ToString()</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
                         </div>
                         <div class="text-danger" style="padding-left:40px">
@@ -64,8 +80,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Create" class="btn btn-default" />
+                            <div style="position: relative; left: 48%;">
+                                <button type="submit" class="btn btn-default" style="background-color:black; border-color:black; color:white;">Add</button>
                             </div>
                         </div>
                        
@@ -76,9 +92,6 @@
         </div>
     </div>
 
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
 
 
         <script src="~/Scripts/jquery-1.10.2.min.js"></script>

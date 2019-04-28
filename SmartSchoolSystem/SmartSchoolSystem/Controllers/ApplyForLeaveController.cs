@@ -24,6 +24,11 @@ namespace SmartSchoolSystem.Controllers
         // GET: ApplyForLeave/Create
         public ActionResult Create()
         {
+
+            if (HelperClass.account != "Parent")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -33,6 +38,11 @@ namespace SmartSchoolSystem.Controllers
         {
             try
             {
+
+                if (HelperClass.account != "Parent")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 // TODO: Add insert logic here
 
                 DB37Entities db = new DB37Entities();

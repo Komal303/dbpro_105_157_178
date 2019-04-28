@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\semester 6\Database\Project\DB37M\SmartSchoolSystem\SmartSchoolSystem\ProjectModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Dc\Desktop\git\SmartSchoolSystem\SmartSchoolSystem\ProjectModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
