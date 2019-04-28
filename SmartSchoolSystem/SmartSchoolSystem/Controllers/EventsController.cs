@@ -41,6 +41,7 @@ namespace SmartSchoolSystem.Controllers
                 eventObj.startTime = e.StartTime;
                 eventObj.endTime = e.EndTime;
                 eventObj.charges = e.Charges;
+                eventObj.id = e.Id;
                 EventViewModel.EventList.Add(eventObj);
             }
 
@@ -60,6 +61,10 @@ namespace SmartSchoolSystem.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -69,6 +74,10 @@ namespace SmartSchoolSystem.Controllers
         {
             try
             {
+                if(HelperClass.account != "Admin")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 // TODO: Add insert logic here
                 DB37Entities db = new DB37Entities();
 
@@ -97,6 +106,10 @@ namespace SmartSchoolSystem.Controllers
         // GET: Events/Edit/5
         public ActionResult Edit(int id)
         {
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             DB37Entities db = new DB37Entities();
 
             EventViewModel eventobj = new EventViewModel();
@@ -118,6 +131,10 @@ namespace SmartSchoolSystem.Controllers
         {
             try
             {
+                if (HelperClass.account != "Admin")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 DB37Entities db = new DB37Entities();
 
                 db.SchoolEventstbls.Find(id).Title = eventObj.name;
@@ -141,6 +158,10 @@ namespace SmartSchoolSystem.Controllers
         // GET: Events/Delete/5
         public ActionResult Delete(int id)
         {
+            if (HelperClass.account != "Admin")
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             DB37Entities db = new DB37Entities();
 

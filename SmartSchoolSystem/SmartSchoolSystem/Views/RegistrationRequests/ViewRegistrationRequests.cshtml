@@ -14,13 +14,13 @@
             <span class="icons c3"><i class="fa fa-trophy"></i></span>
             <div class="box-area">
                 <h3>Parent Name: @item.parentName</h3>
-                <p>Parent Id: @item.parentId</p>
-                <p>Student Id: @item.studentId</p>
+                <!--<p>Parent Id: @item.parentId</p>
+                <p>Student Id: @item.studentId</p>-->
                 <p>Student Name: @item.studentName</p>
                 <br />
                 <div>
-                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("ApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId })>Approve</a>
-                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("DisapproveApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId })>Disapprove</a>
+                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("ApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId, sid = item.studentId })>Approve</a>
+                    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("DisapproveApproveRegistrationRequests", "RegistrationRequests", new { id = item.parentId, sid = item.studentId })>Disapprove</a>
                 </div>
             </div>
         </div>

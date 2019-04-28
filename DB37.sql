@@ -39,14 +39,14 @@ GO
 CREATE TABLE Studentstbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-FirstName NVARCHAR(50),
-LastName NVARCHAR(50),
-RegistrationNumber NVARCHAR(50),
-Username NVARCHAR(50),
-StdPassword NVARCHAR(30),
-CNIC NVARCHAR(15),
-ApprovalStatusId INT,
-ActiveStatusId INT,
+FirstName NVARCHAR(50) NOT NULL,
+LastName NVARCHAR(50) NOT NULL,
+RegistrationNumber NVARCHAR(50) NOT NULL,
+Username NVARCHAR(50) NOT NULL,
+StdPassword NVARCHAR(30) NOT NULL,
+CNIC NVARCHAR(15) NOT NULL,
+ApprovalStatusId INT NOT NULL,
+ActiveStatusId INT NOT NULL,
 CONSTRAINT Studentstbl_pk PRIMARY KEY (Id),
 FOREIGN KEY(ApprovalStatusId) REFERENCES ApprovalStatustbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(ActiveStatusId) REFERENCES ActiveStatustbl(Id) ON DELETE CASCADE
@@ -60,13 +60,13 @@ GO
 CREATE TABLE Parentstbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-FirstName NVARCHAR(50),
-LastName NVARCHAR(50),
-PhoneNumber NVARCHAR(50),
-PrntPassword NVARCHAR(30),
-CNIC NVARCHAR(15),
-ApprovalStatusId INT,
-MailAddress NVARCHAR(50),
+FirstName NVARCHAR(50) NOT NULL,
+LastName NVARCHAR(50) NOT NULL,
+PhoneNumber NVARCHAR(50) NOT NULL,
+PrntPassword NVARCHAR(30) NOT NULL,
+CNIC NVARCHAR(15) NOT NULL,
+ApprovalStatusId INT NOT NULL,
+MailAddress NVARCHAR(50) NOT NULL,
 FOREIGN KEY(ApprovalStatusId) REFERENCES ApprovalStatustbl(Id) ON DELETE CASCADE,
 CONSTRAINT Parentstbl_pk PRIMARY KEY (Id)
 );
@@ -79,7 +79,7 @@ GO
 CREATE TABLE Classtbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Section NVARCHAR(50),
+Section NVARCHAR(50) NOT NULL,
 
 CONSTRAINT Classtbl_pk PRIMARY KEY (Id)
 );
@@ -93,7 +93,7 @@ GO
 CREATE TABLE Subjectstbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Name NVARCHAR(50),
+Name NVARCHAR(50) NOT NULL,
 
 CONSTRAINT Subjectstbl_pk PRIMARY KEY (Id)
 
@@ -106,8 +106,8 @@ GO
 CREATE TABLE ClassSubjecttbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-ClassId INT,
-SubjectId INT,
+ClassId INT NOT NULL,
+SubjectId INT NOT NULL,
 FOREIGN KEY(ClassId) REFERENCES Classtbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(SubjectId) REFERENCES Subjectstbl(Id) ON DELETE CASCADE,
 CONSTRAINT ClassSubjecttbl_pk PRIMARY KEY (Id)
@@ -121,9 +121,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE StudentClasstbl
 (
-Id INT,
-ClassId INT,
-StudentId INT,
+Id INT IDENTITY(1,1) NOT NULL,
+ClassId INT NOT NULL,
+StudentId INT NOT NULL,
 
 FOREIGN KEY(ClassId) REFERENCES Classtbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id) ON DELETE CASCADE,
@@ -140,10 +140,10 @@ GO
 CREATE TABLE ParentStudenttbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-ParentId INT,
-StudentId INT,
+ParentId INT NOT NULL,
+StudentId INT NOT NULL,
 
-FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id),
+FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(ParentId) REFERENCES Parentstbl(Id),
 CONSTRAINT ParentStudenttbl_pk PRIMARY KEY (Id)
 );
@@ -157,13 +157,13 @@ GO
 CREATE TABLE SchoolEventstbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Title NVARCHAR(50),
-EventDescription NVARCHAR(MAX),
-EventDate DateTime,
-StartTime DateTime,
-EndTime DateTime,
-Contact NVARCHAR(20),
-Charges NVARCHAR(20),
+Title NVARCHAR(50) NOT NULL,
+EventDescription NVARCHAR(MAX) NOT NULL,
+EventDate DateTime NOT NULL,
+StartTime DateTime NOT NULL,
+EndTime DateTime NOT NULL,
+Contact NVARCHAR(20) NOT NULL,
+Charges NVARCHAR(20) NOT NULL,
 
 
 CONSTRAINT SchoolEventstbl_pk PRIMARY KEY (Id)
@@ -180,7 +180,7 @@ GO
 CREATE TABLE AttendanceStatustbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Name NVARCHAR(30)
+Name NVARCHAR(30) NOT NULL
 
 
 CONSTRAINT AttendanceStatustbl_pk PRIMARY KEY (Id)
@@ -196,9 +196,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE AttendanceMarkingtbl
 (
-StudentId INT,
-AttendanceDate DateTime,
-AttendanceStatusId INT,
+StudentId INT NOT NULL,
+AttendanceDate DateTime NOT NULL,
+AttendanceStatusId INT NOT NULL,
 
 FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(AttendanceStatusId) REFERENCES AttendanceStatustbl(Id) ON DELETE CASCADE,
@@ -215,11 +215,11 @@ GO
 CREATE TABLE Adminstratortbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Username NVARCHAR(50),
-Email NVARCHAR(50),
-PhoneNumber NVARCHAR(50),
-AdminPassword NVARCHAR(30),
-CNIC NVARCHAR(20),
+Username NVARCHAR(50) NOT NULL,
+Email NVARCHAR(50) NOT NULL,
+PhoneNumber NVARCHAR(50) NOT NULL,
+AdminPassword NVARCHAR(30) NOT NULL,
+CNIC NVARCHAR(20) NOT NULL,
 
 
 CONSTRAINT Administratortbl_pk PRIMARY KEY (Id, Username)
@@ -235,14 +235,14 @@ GO
 CREATE TABLE Leavestbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-ParentId INT,
-StudentId INT,
-LeaveDescription NVARCHAR(MAX),
-DateFrom DATETIME,
-DateEnd DATETIME,
-ApprovalStatusId INT ,
-FOREIGN KEY(ParentId) REFERENCES Parentstbl(Id) ,
-FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id) ,
+ParentId INT NOT NULL,
+StudentId INT NOT NULL,
+LeaveDescription NVARCHAR(MAX) NOT NULL,
+DateFrom DATETIME NOT NULL,
+DateEnd DATETIME NOT NULL,
+ApprovalStatusId INT  NOT NULL,
+FOREIGN KEY(ParentId) REFERENCES Parentstbl(Id),
+FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id)  ON DELETE CASCADE,
 CONSTRAINT Leavestbl_pk PRIMARY KEY (Id)
 );
 
@@ -255,8 +255,8 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE StudentLefttbl
 (
-StudentId INT,
-DateLeft DATETIME,
+StudentId INT NOT NULL,
+DateLeft DATETIME NOT NULL,
 FOREIGN KEY(StudentId) REFERENCES Studentstbl(Id) ON DELETE CASCADE,
 
 CONSTRAINT StudentLefttbl_pk PRIMARY KEY (StudentId)
@@ -271,10 +271,10 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE TimeTabletbl
 (
-WeeksDay NVARCHAR(30),
-ClassId INT,
-SubjectId INT,
-LectureTime TIME,
+WeeksDay NVARCHAR(30) NOT NULL,
+ClassId INT NOT NULL,
+SubjectId INT NOT NULL,
+LectureTime TIME NOT NULL,
 FOREIGN KEY(ClassId) REFERENCES Classtbl(Id) ON DELETE CASCADE,
 FOREIGN KEY(SubjectId) REFERENCES Subjectstbl(Id) ON DELETE CASCADE,
 CONSTRAINT TimeTabletbl_pk PRIMARY KEY (WeeksDay, ClassId, SubjectId)
@@ -289,7 +289,7 @@ GO
 CREATE TABLE Termstbl
 (
 Id INT IDENTITY(1,1) NOT NULL,
-Name NVARCHAR(50)
+Name NVARCHAR(50) NOT NULL,
 CONSTRAINT Termstbl_pk PRIMARY KEY (Id)
 );
 
@@ -302,12 +302,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE Markingstbl
 (
-ClassId INT,
-SubjectId INT,
-StudentId INT,
-TotalMarks FLOAT,
-ObtainedMarks FLOAT,
-TermId INT
+ClassId INT  NOT NULL,
+SubjectId INT NOT NULL,
+StudentId INT NOT NULL,
+TotalMarks FLOAT NOT NULL,
+ObtainedMarks FLOAT NOT NULL,
+TermId INT NOT NULL,
 
 CONSTRAINT Markingstbl_pk PRIMARY KEY (ClassId, StudentId, SubjectId, TermId),
 FOREIGN KEY(ClassId) REFERENCES Classtbl(Id) ON DELETE CASCADE,
@@ -331,19 +331,6 @@ INSERT INTO ActiveStatustbl(Name) VALUES ('Inavtice')
 INSERT INTO ActiveStatustbl(Name) VALUES ('Active')
 
 
-INSERT INTO Parentstbl (FirstName, LastName, PhoneNumber, PrntPassword, CNIC, ApprovalStatusId, MailAddress)
-VALUES ('A', 'a', '21343234', '123', '11111', '2', 'A@gmail.com')
-INSERT INTO Parentstbl (FirstName, LastName, PhoneNumber, PrntPassword, CNIC, ApprovalStatusId, MailAddress)
-VALUES ('B', 'b', '243534', '123', '123213', '2', 'B@gmail.com')
-
-
-
-INSERT INTO Studentstbl (FirstName, LastName, RegistrationNumber, Username, StdPassword, CNIC, ApprovalStatusId, ActiveStatusId)
-VALUES ('C', 'A', NULL, 'C', '123', '1123342345435', '2', '2')
-INSERT INTO Studentstbl (FirstName, LastName, RegistrationNumber, Username, StdPassword, CNIC, ApprovalStatusId, ActiveStatusId)
-VALUES ('D', 'B', NULL, 'D', '123', '1165455', '2', '2')
-
-INSERT INTO ParentStudenttbl(ParentId, StudentId)
-VALUES ('1', '1')
-INSERT INTO ParentStudenttbl(ParentId, StudentId)
-VALUES ('2', '2')
+INSERT INTO Termstbl(Name) VALUES ('Term1')
+INSERT INTO Termstbl(Name) VALUES ('Term2')
+INSERT INTO Termstbl(Name) VALUES ('Term3')

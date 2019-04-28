@@ -17,12 +17,12 @@ namespace SmartSchoolSystem.Controllers
             return View();
         }
 
-        public ActionResult ApproveRegistrationRequests(int id)
+        public ActionResult ApproveRegistrationRequests(int id, int sid)
         {
 
             DB37Entities db = new DB37Entities();
 
-            int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
+            //int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
 
             int i = 1;
 
@@ -35,10 +35,37 @@ namespace SmartSchoolSystem.Controllers
             }
 
             string userName = db.Studentstbls.Find(sid).Username;
-            SendApprovalMail(db.Parentstbls.Find(id).MailAddress, i.ToString(), userName);
             db.Parentstbls.Find(id).ApprovalStatusId = 2;
             db.Studentstbls.Find(sid).ApprovalStatusId = 2;
-            db.Studentstbls.Find(sid).RegistrationNumber = i.ToString();
+            db.Studentstbls.Find(sid).RegistrationNumber = "SSS-"+i.ToString();
+            int check = SendApprovalMail(db.Parentstbls.Find(id).MailAddress,"SSS-"+ i.ToString(), userName);
+            if(check == 0)
+            {
+                foreach (ParentStudenttbl pstbl in db.ParentStudenttbls)
+                {
+                    if (pstbl.ParentId == id)
+                    {
+                        db.ParentStudenttbls.Remove(pstbl);
+                    }
+                }
+
+
+                foreach (Studentstbl stbl in db.Studentstbls)
+                {
+                    if (stbl.Id == sid)
+                    {
+                        db.Studentstbls.Remove(stbl);
+                    }
+                }
+
+                foreach (Parentstbl ptbl in db.Parentstbls)
+                {
+                    if (ptbl.Id == id)
+                    {
+                        db.Parentstbls.Remove(ptbl);
+                    }
+                }
+            }
             db.SaveChanges();
 
             return RedirectToAction("ViewRegistrationRequests", "RegistrationRequests");
@@ -46,15 +73,44 @@ namespace SmartSchoolSystem.Controllers
 
 
 
-        public ActionResult DisapproveApproveRegistrationRequests(int id)
+        public ActionResult DisapproveApproveRegistrationRequests(int id, int sid)
         {
 
             DB37Entities db = new DB37Entities();
 
-            int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
+            //int sid = db.ParentStudenttbls.Where(t => t.ParentId.Equals(id)).FirstOrDefault().StudentId;
 
-            SendDisapprovalMail(db.Parentstbls.Find(id).MailAddress);
+            int check = SendDisapprovalMail(db.Parentstbls.Find(id).MailAddress);
+            if (check == 0)
+            {
+                foreach (ParentStudenttbl pstbl in db.ParentStudenttbls)
+                {
+                    if (pstbl.ParentId == id)
+                    {
+                        db.ParentStudenttbls.Remove(pstbl);
+                    }
+                }
 
+
+                foreach (Studentstbl stbl in db.Studentstbls)
+                {
+                    if (stbl.Id == sid)
+                    {
+                        db.Studentstbls.Remove(stbl);
+                    }
+                }
+
+                foreach (Parentstbl ptbl in db.Parentstbls)
+                {
+                    if (ptbl.Id == id)
+                    {
+                        db.Parentstbls.Remove(ptbl);
+                    }
+                }
+                
+            }
+            else
+            { 
             foreach (ParentStudenttbl pstbl in db.ParentStudenttbls)
             {
                 if (pstbl.ParentId == id)
@@ -81,7 +137,7 @@ namespace SmartSchoolSystem.Controllers
             }
             db.SaveChanges();
 
-            
+        }
 
             return RedirectToAction("ViewRegistrationRequests", "RegistrationRequests");
         }
@@ -95,10 +151,12 @@ namespace SmartSchoolSystem.Controllers
             RegistrationRequestsViewModel.RequestList.Clear();
 
             DB37Entities db = new DB37Entities();
-
+            int studentid, parentid;
             foreach (ParentStudenttbl pstbl in db.ParentStudenttbls)
             {
-                if (db.ApprovalStatustbls.Find(db.Parentstbls.Find(pstbl.ParentId).ApprovalStatusId).Name == "pending")
+                studentid = pstbl.StudentId;
+                parentid = pstbl.ParentId;
+                if (db.ApprovalStatustbls.Where(t1 => t1.Id ==(db.Studentstbls.Where(t=>t.Id == studentid).FirstOrDefault().ApprovalStatusId)).FirstOrDefault().Name == "pending")
                 {
                     RegistrationRequestsViewModel regReqObj = new RegistrationRequestsViewModel();
                     regReqObj.parentId = pstbl.ParentId;
@@ -196,35 +254,45 @@ namespace SmartSchoolSystem.Controllers
         }
 
         [NonAction]
-        public void SendApprovalMail(string email, string regNo, string userName)
+        public int SendApprovalMail(string email, string regNo, string userName)
         {
-            string from1 = "smartschoolsystem0@gmail.com";
-            GmailViewModel g = new GmailViewModel();
-            string email1 = g.email;
-
-            using (MailMessage mail = new MailMessage(from1, email))
+            try
             {
-                mail.Subject = "Registration Request";
-                mail.Body = "Congratulations! Your request has been accepted. You can now log in to your account.@Your child with username: " + userName + "can now login to his account.@Registration Number assigned to your child is " + regNo;
-                mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
-                mail.IsBodyHtml = false;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Host = "smtp.gmail.com";
-                smtp.EnableSsl = true;
-                NetworkCredential networkCredential = new NetworkCredential(from1, "smart*123");
-                smtp.UseDefaultCredentials = true;
-                smtp.Credentials = networkCredential;
-                smtp.Port = 587;
-                smtp.Send(mail);
-                ViewBag.Message = "Sent";
-                ViewData["Message"] = "Your request has been accepted you can now login.";
+                string from1 = "smartschoolsystem0@gmail.com";
+                GmailViewModel g = new GmailViewModel();
+                string email1 = g.email;
+
+                using (MailMessage mail = new MailMessage(from1, email))
+                {
+                    mail.Subject = "Registration Request";
+                    mail.Body = "Congratulations! Your request has been accepted. You can now log in to your account.@Your child with username: " + userName + " can now login to his account.@Registration Number assigned to your child is " + regNo;
+                    mail.Body = mail.Body.Replace("@", System.Environment.NewLine);
+                    mail.IsBodyHtml = false;
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential networkCredential = new NetworkCredential(from1, "smart*123");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = networkCredential;
+                    smtp.Port = 587;
+                    smtp.Send(mail);
+                    ViewBag.Message = "Sent";
+                    ViewData["Message"] = "Your request has been accepted you can now login.";
+                    return 1;
+                }
+            }
+            catch
+            {
+                return 0;
             }
         }
 
 
         [NonAction]
-        public void SendDisapprovalMail(string email)
+        public int SendDisapprovalMail(string email)
         {
+            try
+            { 
             string from1 = "smartschoolsystem0@gmail.com";
             GmailViewModel g = new GmailViewModel();
             string email1 = g.email;
@@ -245,6 +313,13 @@ namespace SmartSchoolSystem.Controllers
                 smtp.Send(mail);
                 ViewBag.Message = "Sent";
                 ViewData["Message"] = "Your request has been denied.";
+
+            }
+            return 1;
+        }
+            catch
+            {
+                return 0;
             }
         }
     }

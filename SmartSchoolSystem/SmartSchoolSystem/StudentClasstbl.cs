@@ -15,8 +15,8 @@ namespace SmartSchoolSystem
     public partial class StudentClasstbl
     {
         public int Id { get; set; }
-        public Nullable<int> ClassId { get; set; }
-        public Nullable<int> StudentId { get; set; }
+        public int ClassId { get; set; }
+        public int StudentId { get; set; }
     
         public virtual Classtbl Classtbl { get; set; }
         public virtual Studentstbl Studentstbl { get; set; }

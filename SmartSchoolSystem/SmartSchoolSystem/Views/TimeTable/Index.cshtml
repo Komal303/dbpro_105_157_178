@@ -3,15 +3,28 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .button
+    {
+        background-color:black; 
+        border-color:black; 
+        color:white;
 
-<h2 style="text-align:center;">Index</h2>
+    }
+</style>
+
+<h2 style="text-align:center;">Time Table Index Page</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-<p>
-    @Html.ActionLink("Add New Time Table Entry", "Create", "TimeTable")
+    if (HelperClass.account == "Admin")
+    {
+<p style="padding-left:200px">
+    <button style="background-color:black;">
+    @Html.ActionLink("Add New Time Table Entry", "Create", "TimeTable",new { @class = "button" })
+</button>
 </p>
+    }
 <div style="padding-left:150px;">
     <label>Class: </label> &nbsp;
     <select id="Classlist" name="Classlist">
@@ -26,21 +39,23 @@
     <input type="submit" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Time Table" class="btn btn-default" />
 </div>
 <h4 style="text-align:center;">@ViewBag.classname</h4>
-<div class="text-center" style="border: 5px solid #000000; border-radius: 5px; padding: 10px; width: 90%; height: auto; margin: auto;">
+<div style= "padding-left : 200px;">
 
-    <table class="table">
+    <table class="table"style="border: 5px solid #000000; border-radius: 5px;align-self:center; width: 90%; height: auto;">
         <tr>
             <th>
-                <div >
-                    @Html.DisplayNameFor(model => model.dayname)
-                </div>
+                
+                   Day
+                
 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.subjectname)
+                Subject Name
+
+               
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.time)
+                Time
             </th>
             <th></th>
         </tr>
@@ -49,9 +64,9 @@
         {
             <tr>
                 <td>
-                    <div>
+                    
                     @Html.DisplayFor(modelItem => item.dayname)
-                        </div>
+                        
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.subjectname)
@@ -60,7 +75,14 @@
                     @Html.DisplayFor(modelItem => item.time)
                 </td>
                 <td>
-                    @Html.ActionLink("Delete", "Delete", new { subjectname = item.subjectname, classname = ViewBag.classname, dayname = item.dayname, time = item.time })
+                   @if (HelperClass.account == "Admin")
+                   {
+                       <div  >
+                           <button class="button">                    
+                               @Html.ActionLink("Delete", "Delete", new { subjectname = item.subjectname, classname = ViewBag.classname, dayname = item.dayname, time = item.time }, new { @class = "button" })
+                               </button>
+                   </div>
+                           }
                 </td>
             </tr>
         }

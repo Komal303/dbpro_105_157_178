@@ -15,10 +15,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="AdminPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CNIC" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="ApprovalStatustbl">
     <Key>
@@ -36,7 +36,7 @@
     </Key>
     <Property Name="StudentId" Type="Int32" Nullable="false" />
     <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="AttendanceStatusId" Type="Int32" />
+    <Property Name="AttendanceStatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="AttendanceStatustbl" Relationship="Self.FK__Attendanc__Atten__2F10007B" FromRole="AttendanceMarkingtbl" ToRole="AttendanceStatustbl" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Attendanc__Stude__2E1BDC42" FromRole="AttendanceMarkingtbl" ToRole="Studentstbl" />
   </EntityType>
@@ -45,7 +45,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="AttendanceMarkingtbls" Relationship="Self.FK__Attendanc__Atten__2F10007B" FromRole="AttendanceStatustbl" ToRole="AttendanceMarkingtbl" />
   </EntityType>
   <EntityType Name="ClassSubjecttbl">
@@ -53,8 +53,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ClassId" Type="Int32" />
-    <Property Name="SubjectId" Type="Int32" />
+    <Property Name="ClassId" Type="Int32" Nullable="false" />
+    <Property Name="SubjectId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Classtbl" Relationship="Self.FK__ClassSubj__Class__1ED998B2" FromRole="ClassSubjecttbl" ToRole="Classtbl" />
     <NavigationProperty Name="Subjectstbl" Relationship="Self.FK__ClassSubj__Subje__1FCDBCEB" FromRole="ClassSubjecttbl" ToRole="Subjectstbl" />
   </EntityType>
@@ -63,7 +63,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Section" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ClassSubjecttbls" Relationship="Self.FK__ClassSubj__Class__1ED998B2" FromRole="Classtbl" ToRole="ClassSubjecttbl" />
     <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__Class__403A8C7D" FromRole="Classtbl" ToRole="Markingstbl" />
     <NavigationProperty Name="StudentClasstbls" Relationship="Self.FK__StudentCl__Class__22AA2996" FromRole="Classtbl" ToRole="StudentClasstbl" />
@@ -74,12 +74,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ParentId" Type="Int32" />
-    <Property Name="StudentId" Type="Int32" />
-    <Property Name="LeaveDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="DateFrom" Type="DateTime" Precision="3" />
-    <Property Name="DateEnd" Type="DateTime" Precision="3" />
-    <Property Name="ApprovalStatusId" Type="Int32" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
+    <Property Name="LeaveDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ApprovalStatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Parentstbl" Relationship="Self.FK__Leavestbl__Paren__33D4B598" FromRole="Leavestbl" ToRole="Parentstbl" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Leavestbl__Stude__34C8D9D1" FromRole="Leavestbl" ToRole="Studentstbl" />
   </EntityType>
@@ -93,8 +93,8 @@
     <Property Name="ClassId" Type="Int32" Nullable="false" />
     <Property Name="SubjectId" Type="Int32" Nullable="false" />
     <Property Name="StudentId" Type="Int32" Nullable="false" />
-    <Property Name="TotalMarks" Type="Double" />
-    <Property Name="ObtainedMarks" Type="Double" />
+    <Property Name="TotalMarks" Type="Double" Nullable="false" />
+    <Property Name="ObtainedMarks" Type="Double" Nullable="false" />
     <Property Name="TermId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Classtbl" Relationship="Self.FK__Markingst__Class__403A8C7D" FromRole="Markingstbl" ToRole="Classtbl" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__Markingst__Stude__4222D4EF" FromRole="Markingstbl" ToRole="Studentstbl" />
@@ -106,13 +106,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PrntPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="ApprovalStatusId" Type="Int32" />
-    <Property Name="MailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrntPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApprovalStatusId" Type="Int32" Nullable="false" />
+    <Property Name="MailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ApprovalStatustbl" Relationship="Self.FK__Parentstb__Appro__182C9B23" FromRole="Parentstbl" ToRole="ApprovalStatustbl" />
     <NavigationProperty Name="Leavestbls" Relationship="Self.FK__Leavestbl__Paren__33D4B598" FromRole="Parentstbl" ToRole="Leavestbl" />
     <NavigationProperty Name="ParentStudenttbls" Relationship="Self.FK__ParentStu__Paren__276EDEB3" FromRole="Parentstbl" ToRole="ParentStudenttbl" />
@@ -122,8 +122,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ParentId" Type="Int32" />
-    <Property Name="StudentId" Type="Int32" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Parentstbl" Relationship="Self.FK__ParentStu__Paren__276EDEB3" FromRole="ParentStudenttbl" ToRole="Parentstbl" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__ParentStu__Stude__267ABA7A" FromRole="ParentStudenttbl" ToRole="Studentstbl" />
   </EntityType>
@@ -132,21 +132,21 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="EventDate" Type="DateTime" Precision="3" />
-    <Property Name="StartTime" Type="DateTime" Precision="3" />
-    <Property Name="EndTime" Type="DateTime" Precision="3" />
-    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="Charges" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Contact" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Charges" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="StudentClasstbl">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="ClassId" Type="Int32" />
-    <Property Name="StudentId" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="Int32" Nullable="false" />
+    <Property Name="StudentId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Classtbl" Relationship="Self.FK__StudentCl__Class__22AA2996" FromRole="StudentClasstbl" ToRole="Classtbl" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__StudentCl__Stude__239E4DCF" FromRole="StudentClasstbl" ToRole="Studentstbl" />
   </EntityType>
@@ -155,7 +155,7 @@
       <PropertyRef Name="StudentId" />
     </Key>
     <Property Name="StudentId" Type="Int32" Nullable="false" />
-    <Property Name="DateLeft" Type="DateTime" Precision="3" />
+    <Property Name="DateLeft" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Studentstbl" Relationship="Self.FK__StudentLe__Stude__37A5467C" FromRole="StudentLefttbl" ToRole="Studentstbl" />
   </EntityType>
   <EntityType Name="Studentstbl">
@@ -163,14 +163,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="RegistrationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="StdPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="ApprovalStatusId" Type="Int32" />
-    <Property Name="ActiveStatusId" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StdPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CNIC" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApprovalStatusId" Type="Int32" Nullable="false" />
+    <Property Name="ActiveStatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ActiveStatustbl" Relationship="Self.FK__Studentst__Activ__15502E78" FromRole="Studentstbl" ToRole="ActiveStatustbl" />
     <NavigationProperty Name="ApprovalStatustbl" Relationship="Self.FK__Studentst__Appro__145C0A3F" FromRole="Studentstbl" ToRole="ApprovalStatustbl" />
     <NavigationProperty Name="AttendanceMarkingtbls" Relationship="Self.FK__Attendanc__Stude__2E1BDC42" FromRole="Studentstbl" ToRole="AttendanceMarkingtbl" />
@@ -185,7 +185,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="ClassSubjecttbls" Relationship="Self.FK__ClassSubj__Subje__1FCDBCEB" FromRole="Subjectstbl" ToRole="ClassSubjecttbl" />
     <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__Subje__412EB0B6" FromRole="Subjectstbl" ToRole="Markingstbl" />
     <NavigationProperty Name="TimeTabletbls" Relationship="Self.FK__TimeTable__Subje__3B75D760" FromRole="Subjectstbl" ToRole="TimeTabletbl" />
@@ -195,7 +195,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Markingstbls" Relationship="Self.FK__Markingst__TermI__4316F928" FromRole="Termstbl" ToRole="Markingstbl" />
   </EntityType>
   <EntityType Name="TimeTabletbl">
@@ -207,12 +207,12 @@
     <Property Name="WeeksDay" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ClassId" Type="Int32" Nullable="false" />
     <Property Name="SubjectId" Type="Int32" Nullable="false" />
-    <Property Name="LectureTime" Type="Time" Precision="7" />
+    <Property Name="LectureTime" Type="Time" Nullable="false" Precision="7" />
     <NavigationProperty Name="Classtbl" Relationship="Self.FK__TimeTable__Class__3A81B327" FromRole="TimeTabletbl" ToRole="Classtbl" />
     <NavigationProperty Name="Subjectstbl" Relationship="Self.FK__TimeTable__Subje__3B75D760" FromRole="TimeTabletbl" ToRole="Subjectstbl" />
   </EntityType>
   <Association Name="FK__Studentst__Activ__15502E78">
-    <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="0..1">
+    <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
@@ -226,7 +226,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Parentstb__Appro__182C9B23">
-    <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+    <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="*" />
@@ -240,7 +240,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Studentst__Appro__145C0A3F">
-    <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="0..1">
+    <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="*" />
@@ -254,7 +254,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Attendanc__Atten__2F10007B">
-    <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="0..1">
+    <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="AttendanceMarkingtbl" Type="Self.AttendanceMarkingtbl" Multiplicity="*" />
@@ -282,7 +282,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ClassSubj__Class__1ED998B2">
-    <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+    <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
@@ -296,7 +296,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ClassSubj__Subje__1FCDBCEB">
-    <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="0..1">
+    <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="ClassSubjecttbl" Type="Self.ClassSubjecttbl" Multiplicity="*" />
@@ -324,7 +324,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__StudentCl__Class__22AA2996">
-    <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="0..1">
+    <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />
@@ -352,7 +352,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Leavestbl__Paren__33D4B598">
-    <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+    <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Parentstbl">
@@ -364,7 +364,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Leavestbl__Stude__34C8D9D1">
-    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Studentstbl">
@@ -418,7 +420,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ParentStu__Paren__276EDEB3">
-    <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="0..1" />
+    <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Parentstbl">
@@ -430,7 +432,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ParentStu__Stude__267ABA7A">
-    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1" />
+    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Studentstbl">
@@ -442,7 +446,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__StudentCl__Stude__239E4DCF">
-    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="0..1">
+    <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="StudentClasstbl" Type="Self.StudentClasstbl" Multiplicity="*" />

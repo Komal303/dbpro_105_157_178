@@ -16,7 +16,7 @@ namespace SmartSchoolSystem
     {
         public int StudentId { get; set; }
         public System.DateTime AttendanceDate { get; set; }
-        public Nullable<int> AttendanceStatusId { get; set; }
+        public int AttendanceStatusId { get; set; }
     
         public virtual AttendanceStatustbl AttendanceStatustbl { get; set; }
         public virtual Studentstbl Studentstbl { get; set; }

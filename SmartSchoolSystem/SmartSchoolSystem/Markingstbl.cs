@@ -17,8 +17,8 @@ namespace SmartSchoolSystem
         public int ClassId { get; set; }
         public int SubjectId { get; set; }
         public int StudentId { get; set; }
-        public Nullable<double> TotalMarks { get; set; }
-        public Nullable<double> ObtainedMarks { get; set; }
+        public double TotalMarks { get; set; }
+        public double ObtainedMarks { get; set; }
         public int TermId { get; set; }
     
         public virtual Classtbl Classtbl { get; set; }

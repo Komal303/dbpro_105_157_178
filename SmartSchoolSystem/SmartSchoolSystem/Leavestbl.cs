@@ -18,8 +18,8 @@ namespace SmartSchoolSystem
         public int ParentId { get; set; }
         public int StudentId { get; set; }
         public string LeaveDescription { get; set; }
-        public DateTime DateFrom { get; set; }
-        public DateTime DateEnd { get; set; }
+        public System.DateTime DateFrom { get; set; }
+        public System.DateTime DateEnd { get; set; }
         public int ApprovalStatusId { get; set; }
     
         public virtual Parentstbl Parentstbl { get; set; }

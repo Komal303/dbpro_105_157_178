@@ -27,7 +27,7 @@ namespace SmartSchoolSystem
         public string PhoneNumber { get; set; }
         public string PrntPassword { get; set; }
         public string CNIC { get; set; }
-        public Nullable<int> ApprovalStatusId { get; set; }
+        public int ApprovalStatusId { get; set; }
         public string MailAddress { get; set; }
     
         public virtual ApprovalStatustbl ApprovalStatustbl { get; set; }

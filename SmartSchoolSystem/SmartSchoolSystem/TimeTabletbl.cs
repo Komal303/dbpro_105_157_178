@@ -17,7 +17,7 @@ namespace SmartSchoolSystem
         public string WeeksDay { get; set; }
         public int ClassId { get; set; }
         public int SubjectId { get; set; }
-        public Nullable<System.TimeSpan> LectureTime { get; set; }
+        public System.TimeSpan LectureTime { get; set; }
     
         public virtual Classtbl Classtbl { get; set; }
         public virtual Subjectstbl Subjectstbl { get; set; }

@@ -15,7 +15,7 @@ namespace SmartSchoolSystem
     public partial class StudentLefttbl
     {
         public int StudentId { get; set; }
-        public Nullable<System.DateTime> DateLeft { get; set; }
+        public System.DateTime DateLeft { get; set; }
     
         public virtual Studentstbl Studentstbl { get; set; }
     }

@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 
 <h2 class="text-center">Events Home Page</h2>
@@ -33,9 +32,9 @@
                 @if (HelperClass.account == "Admin")
                 {
                     <div>
-                        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("Edit", "Events", new { id = 1 })>Update</a>
+                        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("Edit", "Events", new { id = item.id })>Update</a>
 
-                        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("Delete", "Events", new { id = 1 })>Delete</a>
+                        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("Delete", "Events", new { id = item.id })>Delete</a>
                     </div>
                 }
             </div>

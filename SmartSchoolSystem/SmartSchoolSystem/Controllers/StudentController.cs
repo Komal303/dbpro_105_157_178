@@ -18,13 +18,29 @@ namespace SmartSchoolSystem.Controllers
 
         public ActionResult StudentRegistration()
         {
+            DB37Entities db = new DB37Entities();
+            List<string> classes = new List<string>();
+            foreach(Classtbl c in db.Classtbls)
+            {
+                classes.Add(c.Section);
+            }
+            ViewBag.Options = classes;
             return View(); 
         }
         [HttpPost]
-        public ActionResult StudentRegistration(StudentRegistrationViewModels s)
+        public ActionResult StudentRegistration(StudentRegistrationViewModels s, FormCollection form)
         {
-            DB37Entities db = new DB37Entities();
 
+            string classname = form["Classlist"].ToString();
+            int classid;
+            DB37Entities db = new DB37Entities();
+            List<string> classes = new List<string>();
+            foreach (Classtbl c in db.Classtbls)
+            {
+                classes.Add(c.Section);
+            }
+            ViewBag.Options = classes;
+            classid = db.Classtbls.Where(t => t.Section == classname).FirstOrDefault().Id ;
             if (HelperClass.account != "Parent" && ParentRegistrationViewModels.p.Email == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -56,10 +72,12 @@ namespace SmartSchoolSystem.Controllers
             student.ApprovalStatusId = db.ApprovalStatustbls.Where(t => t.Name.Equals("pending")).FirstOrDefault().Id;
             student.Username = s.Username;
             student.StdPassword = s.StdPassword;
-
+            student.CNIC = s.CNIC;
+            student.RegistrationNumber = "-1";
             db.Studentstbls.Add(student);
 
-            
+
+
             db.SaveChanges();
 
             DB37Entities db2 = new DB37Entities();
@@ -67,10 +85,19 @@ namespace SmartSchoolSystem.Controllers
 
             ParentStudenttbl pstbl = new ParentStudenttbl();
             pstbl.StudentId = db2.Studentstbls.Where(t => t.Username == student.Username).FirstOrDefault().Id;
-            pstbl.ParentId = db2.Parentstbls.Where(t => t.MailAddress == parent.MailAddress).FirstOrDefault().Id;
-
+            if (HelperClass.parentid != -1)
+            {
+                pstbl.ParentId = HelperClass.parentid;
+            }
+            else
+            {
+                pstbl.ParentId = db2.Parentstbls.Where(t => t.MailAddress == parent.MailAddress).FirstOrDefault().Id;
+            }
             db2.ParentStudenttbls.Add(pstbl);
-
+            StudentClasstbl s1 = new StudentClasstbl();
+            s1.StudentId = pstbl.StudentId;
+            s1.ClassId = classid;
+            db2.StudentClasstbls.Add(s1);
             db2.SaveChanges();
             
             

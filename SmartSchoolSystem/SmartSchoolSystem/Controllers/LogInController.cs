@@ -40,6 +40,7 @@ namespace SmartSchoolSystem.Controllers
                 db.Parentstbls.Where(t4=> t4.MailAddress.Equals(login.UserName)).FirstOrDefault().PrntPassword.Equals(login.Password)) && 
                     db.Parentstbls.Where(t2 => t2.MailAddress.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
                 {
+                    HelperClass.parentid = db.Parentstbls.Where(t => t.MailAddress == login.UserName).First().Id;
                     return RedirectToAction("Index", "Home");
                 }
                 else

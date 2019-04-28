@@ -17,9 +17,9 @@ namespace SmartSchoolSystem
         public int Id { get; set; }
         public string Title { get; set; }
         public string EventDescription { get; set; }
-        public DateTime EventDate { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public System.DateTime EventDate { get; set; }
+        public System.DateTime StartTime { get; set; }
+        public System.DateTime EndTime { get; set; }
         public string Contact { get; set; }
         public string Charges { get; set; }
     }

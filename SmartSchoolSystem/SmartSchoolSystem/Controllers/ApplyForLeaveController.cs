@@ -48,7 +48,11 @@ namespace SmartSchoolSystem.Controllers
                     db.Leavestbls.Add(l);
                     db.SaveChanges();
                 }
-
+                else
+                {
+                    ViewBag.warn = "Invalid Credentials";
+                    return View();
+                }
                 
 
                 return RedirectToAction("Index", "Home");

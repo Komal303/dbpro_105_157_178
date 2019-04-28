@@ -31,8 +31,8 @@ namespace SmartSchoolSystem
         public string Username { get; set; }
         public string StdPassword { get; set; }
         public string CNIC { get; set; }
-        public Nullable<int> ApprovalStatusId { get; set; }
-        public Nullable<int> ActiveStatusId { get; set; }
+        public int ApprovalStatusId { get; set; }
+        public int ActiveStatusId { get; set; }
     
         public virtual ActiveStatustbl ActiveStatustbl { get; set; }
         public virtual ApprovalStatustbl ApprovalStatustbl { get; set; }
