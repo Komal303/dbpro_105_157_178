@@ -33,7 +33,7 @@ namespace SmartSchoolSystem.Controllers
 
             foreach (Studentstbl stbl in db.Studentstbls)
             {
-                if (stbl.RegistrationNumber == "SSS" + i.ToString())
+                if (stbl.RegistrationNumber == "SSS-" + i.ToString())
                 {
                     i++;
                 }

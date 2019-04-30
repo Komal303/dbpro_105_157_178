@@ -36,7 +36,7 @@ namespace SmartSchoolSystem.Controllers
             int activestatusid = db.ActiveStatustbls.Where(t1 => t1.Name == "Active").FirstOrDefault().Id;
             foreach(StudentClasstbl sc in db.StudentClasstbls)
             {
-                if(db.Studentstbls.Any(t=> t.ActiveStatusId == activestatusid && t.Id == sc.Id))
+                if(db.Studentstbls.Any(t=> t.ActiveStatusId == activestatusid && t.Id == sc.Id && t.RegistrationNumber != "-1"))
                 {
                     StudentsLeftViewModel studentsLeft = new StudentsLeftViewModel();
                     studentsLeft.classId = sc.ClassId;

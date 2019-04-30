@@ -91,6 +91,7 @@ namespace SmartSchoolSystem.Controllers
             try
             {
                 
+                
                 DB37Entities db = new DB37Entities();
 
                 List<string> termList = new List<string>();
@@ -114,30 +115,43 @@ namespace SmartSchoolSystem.Controllers
                 }
                 if (AssessmentViewModel.flag == false)
                 {
-                    AssessmentViewModel.totalMarks = Convert.ToInt32(form["total"]);
-
-                    selectedClass = form["Classlist"].ToString();
-                    AssessmentViewModel.classId = db.Classtbls.Where(t1 => t1.Section.Equals(selectedClass)).FirstOrDefault().Id;
-
-                    selectedSubject = form["subjectList"].ToString();
-                    AssessmentViewModel.subjectId = db.Subjectstbls.Where(t2 => t2.Name.Equals(selectedSubject)).FirstOrDefault().Id;
-
-                    selectedTerm = form["Termlist"].ToString();
-                    AssessmentViewModel.termId = db.Termstbls.Where(t4 => t4.Name.Equals(selectedTerm)).FirstOrDefault().Id;
+                    
                 }
 
                 
                 // TODO: Add insert logic here
                 if (sub == "show")
                 {
+                    AssessmentViewModel.totalMarks = Convert.ToInt32(form["total"]);
+
+                    selectedClass = form["Classlist"].ToString();
+                    if (form["Classlist"].ToString() == null)
+                    {
+                        ViewBag.warn = "Select subjects before clicking show";
+                        return View();
+                    }
+                    AssessmentViewModel.classId = db.Classtbls.Where(t1 => t1.Section.Equals(selectedClass)).FirstOrDefault().Id;
+                    if (form["subjectList"].ToString() == null)
+                    {
+                        ViewBag.warn = "Select subjects before clicking show";
+                        return View();
+                    }
+
+                    selectedSubject = form["subjectList"].ToString();
+                    AssessmentViewModel.subjectId = db.Subjectstbls.Where(t2 => t2.Name.Equals(selectedSubject)).FirstOrDefault().Id;
+
+                    selectedTerm = form["Termlist"].ToString();
+                    AssessmentViewModel.termId = db.Termstbls.Where(t4 => t4.Name.Equals(selectedTerm)).FirstOrDefault().Id;
+                    AssessmentViewModel.assessmentList.Clear();
                     AssessmentViewModel.flag = true;
 
-                    AssessmentViewModel assessment = new AssessmentViewModel();
+                    
 
                     foreach (StudentClasstbl sctbl in db.StudentClasstbls)
                     {
                         if (sctbl.ClassId == AssessmentViewModel.classId)
                         {
+                            AssessmentViewModel assessment = new AssessmentViewModel();
                             assessment.studentId = sctbl.StudentId;
                             assessment.regNo = db.Studentstbls.Where(t3 => t3.Id.Equals(sctbl.StudentId)).FirstOrDefault().RegistrationNumber;
                             AssessmentViewModel.assessmentList.Add(assessment);
@@ -155,19 +169,27 @@ namespace SmartSchoolSystem.Controllers
 
                     AssessmentViewModel a = new AssessmentViewModel();
                     int count = 0;
-                    Markingstbl mtbl = new Markingstbl();
+                    
                     foreach (AssessmentViewModel a1 in AssessmentViewModel.assessmentList)
                     {
-                        mtbl.ClassId = AssessmentViewModel.classId;
-                        mtbl.SubjectId = AssessmentViewModel.subjectId;
-                        mtbl.StudentId = a1.studentId;
-                        mtbl.TotalMarks = AssessmentViewModel.totalMarks;
-                        mtbl.ObtainedMarks = Convert.ToInt32(added[count]);
-                        mtbl.TermId = AssessmentViewModel.termId;
+                        if (db.Markingstbls.Any(t6 => t6.ClassId == AssessmentViewModel.classId && t6.SubjectId == AssessmentViewModel.subjectId && t6.StudentId == a1.studentId && t6.TermId == AssessmentViewModel.termId))
+                        {
+                            db.Markingstbls.Where(t7 => t7.ClassId == AssessmentViewModel.classId && t7.SubjectId == AssessmentViewModel.subjectId && t7.StudentId == a1.studentId && t7.TermId == AssessmentViewModel.termId).FirstOrDefault().ObtainedMarks = Convert.ToInt32(added[count]);
+                        }
+                        else
+                        {
+                            Markingstbl mtbl = new Markingstbl();
+                            mtbl.ClassId = AssessmentViewModel.classId;
+                            mtbl.SubjectId = AssessmentViewModel.subjectId;
+                            mtbl.StudentId = a1.studentId;
+                            mtbl.TotalMarks = AssessmentViewModel.totalMarks;
+                            mtbl.ObtainedMarks = Convert.ToInt32(added[count]);
+                            mtbl.TermId = AssessmentViewModel.termId;
+                            db.Markingstbls.Add(mtbl);
+                        }
                         count++;
-                        db.Markingstbls.Add(mtbl);
-                        db.SaveChanges();
                     }
+                    db.SaveChanges();
 
                     return RedirectToAction("Create");
                 }
