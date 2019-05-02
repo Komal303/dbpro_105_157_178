@@ -41,6 +41,7 @@ namespace SmartSchoolSystem.Controllers
                     db.Parentstbls.Where(t2 => t2.MailAddress.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
                 {
                     HelperClass.parentid = db.Parentstbls.Where(t => t.MailAddress == login.UserName).First().Id;
+                    HelperClass.accountid = HelperClass.parentid;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -55,6 +56,7 @@ namespace SmartSchoolSystem.Controllers
                 db.Studentstbls.Where(t4 => t4.Username.Equals(login.UserName)).FirstOrDefault().StdPassword.Equals(login.Password)) &&
                     db.Studentstbls.Where(t2 => t2.Username.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
                 {
+                    HelperClass.accountid = db.Studentstbls.Where(t => t.Username == login.UserName).First().Id;
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -166,6 +168,8 @@ namespace SmartSchoolSystem.Controllers
         public ActionResult LogOut()
         {
             HelperClass.account = "";
+            HelperClass.parentid = -1;
+            HelperClass.accountid = -1;
             return RedirectToAction("Index", "Home");
         }
 

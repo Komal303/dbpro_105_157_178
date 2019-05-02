@@ -88,18 +88,24 @@
                     <li class="elements">@Html.ActionLink("Subject", "Index", "Subject")</li>
                     <li class="elements">@Html.ActionLink("Students Left", "ViewActiveStudents", "StudentsLeft")</li>
                     <li class="elements">@Html.ActionLink("Student Marking", "Create", "Assessment")</li>
+                    <li class="elements">@Html.ActionLink("Reports Page", "AdminReportsOnly", "Reports")</li>
+                    <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
+
+}
+@if (HelperClass.account == "Student")
+{
+    <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
+    <li class="elements">@Html.ActionLink("Reports Page", "StudentReports", "Reports")</li>
 }
                     @if (HelperClass.account == "Parent")
                     {
+                        <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
                         <li>@Html.ActionLink("Apply for leave", "Create", "ApplyForLeave")</li>
-                        <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
                         <li>@Html.ActionLink("Register More Student", "StudentRegistration", "Student")</li>
+                        <li class="elements">@Html.ActionLink("Reports Page", "ParentReports", "Reports")</li>
                     }
-                    else if (HelperClass.account != null && HelperClass.account != "")
-                    {
-                        <li>@Html.ActionLink("Time Table", "Index", "TimeTable")</li>
-                        
-                    }
+                  
+                   
                 </ul>
             </nav>
         

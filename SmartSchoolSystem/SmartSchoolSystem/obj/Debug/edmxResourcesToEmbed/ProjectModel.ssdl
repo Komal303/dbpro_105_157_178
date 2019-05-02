@@ -171,7 +171,7 @@
     <Property Name="SubjectId" Type="int" Nullable="false" />
     <Property Name="LectureTime" Type="time" Precision="7" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Attendanc__Atten__2F10007B">
+  <Association Name="FK__Attendanc__Atten__30F848ED">
     <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -185,7 +185,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Attendanc__Stude__2E1BDC42">
+  <Association Name="FK__Attendanc__Stude__31EC6D26">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -199,7 +199,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassSubj__Class__1ED998B2">
+  <Association Name="FK__ClassSubj__Class__32E0915F">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -213,7 +213,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassSubj__Subje__1FCDBCEB">
+  <Association Name="FK__ClassSubj__Subje__33D4B598">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -227,7 +227,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Leavestbl__Paren__33D4B598">
+  <Association Name="FK__Leavestbl__Paren__34C8D9D1">
     <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,7 +239,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Leavestbl__Stude__34C8D9D1">
+  <Association Name="FK__Leavestbl__Stude__35BCFE0A">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -253,7 +253,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Class__403A8C7D">
+  <Association Name="FK__Markingst__Class__36B12243">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -267,7 +267,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Stude__4222D4EF">
+  <Association Name="FK__Markingst__Stude__37A5467C">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -281,7 +281,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Subje__412EB0B6">
+  <Association Name="FK__Markingst__Subje__38996AB5">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -295,7 +295,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__TermI__4316F928">
+  <Association Name="FK__Markingst__TermI__398D8EEE">
     <End Role="Termstbl" Type="Self.Termstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -309,7 +309,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Parentstb__Appro__182C9B23">
+  <Association Name="FK__Parentstb__Appro__3A81B327">
     <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -323,7 +323,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ParentStu__Paren__276EDEB3">
+  <Association Name="FK__ParentStu__Paren__3B75D760">
     <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -335,7 +335,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ParentStu__Stude__267ABA7A">
+  <Association Name="FK__ParentStu__Stude__3C69FB99">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -349,7 +349,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCl__Class__22AA2996">
+  <Association Name="FK__StudentCl__Class__3D5E1FD2">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -363,7 +363,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCl__Stude__239E4DCF">
+  <Association Name="FK__StudentCl__Stude__3E52440B">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -377,7 +377,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentLe__Stude__37A5467C">
+  <Association Name="FK__StudentLe__Stude__3F466844">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -391,7 +391,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Studentst__Activ__15502E78">
+  <Association Name="FK__Studentst__Activ__403A8C7D">
     <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -405,7 +405,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Studentst__Appro__145C0A3F">
+  <Association Name="FK__Studentst__Appro__412EB0B6">
     <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -419,7 +419,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeTable__Class__3A81B327">
+  <Association Name="FK__TimeTable__Class__4222D4EF">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -433,7 +433,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeTable__Subje__3B75D760">
+  <Association Name="FK__TimeTable__Subje__4316F928">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -466,83 +466,83 @@
     <EntitySet Name="Subjectstbl" EntityType="Self.Subjectstbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Termstbl" EntityType="Self.Termstbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeTabletbl" EntityType="Self.TimeTabletbl" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Attendanc__Atten__2F10007B" Association="Self.FK__Attendanc__Atten__2F10007B">
+    <AssociationSet Name="FK__Attendanc__Atten__30F848ED" Association="Self.FK__Attendanc__Atten__30F848ED">
       <End Role="AttendanceStatustbl" EntitySet="AttendanceStatustbl" />
       <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Attendanc__Stude__2E1BDC42" Association="Self.FK__Attendanc__Stude__2E1BDC42">
+    <AssociationSet Name="FK__Attendanc__Stude__31EC6D26" Association="Self.FK__Attendanc__Stude__31EC6D26">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassSubj__Class__1ED998B2" Association="Self.FK__ClassSubj__Class__1ED998B2">
+    <AssociationSet Name="FK__ClassSubj__Class__32E0915F" Association="Self.FK__ClassSubj__Class__32E0915F">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassSubj__Subje__1FCDBCEB" Association="Self.FK__ClassSubj__Subje__1FCDBCEB">
+    <AssociationSet Name="FK__ClassSubj__Subje__33D4B598" Association="Self.FK__ClassSubj__Subje__33D4B598">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Leavestbl__Paren__33D4B598" Association="Self.FK__Leavestbl__Paren__33D4B598">
+    <AssociationSet Name="FK__Leavestbl__Paren__34C8D9D1" Association="Self.FK__Leavestbl__Paren__34C8D9D1">
       <End Role="Parentstbl" EntitySet="Parentstbl" />
       <End Role="Leavestbl" EntitySet="Leavestbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Leavestbl__Stude__34C8D9D1" Association="Self.FK__Leavestbl__Stude__34C8D9D1">
+    <AssociationSet Name="FK__Leavestbl__Stude__35BCFE0A" Association="Self.FK__Leavestbl__Stude__35BCFE0A">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="Leavestbl" EntitySet="Leavestbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Class__403A8C7D" Association="Self.FK__Markingst__Class__403A8C7D">
+    <AssociationSet Name="FK__Markingst__Class__36B12243" Association="Self.FK__Markingst__Class__36B12243">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Stude__4222D4EF" Association="Self.FK__Markingst__Stude__4222D4EF">
+    <AssociationSet Name="FK__Markingst__Stude__37A5467C" Association="Self.FK__Markingst__Stude__37A5467C">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Subje__412EB0B6" Association="Self.FK__Markingst__Subje__412EB0B6">
+    <AssociationSet Name="FK__Markingst__Subje__38996AB5" Association="Self.FK__Markingst__Subje__38996AB5">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__TermI__4316F928" Association="Self.FK__Markingst__TermI__4316F928">
+    <AssociationSet Name="FK__Markingst__TermI__398D8EEE" Association="Self.FK__Markingst__TermI__398D8EEE">
       <End Role="Termstbl" EntitySet="Termstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Parentstb__Appro__182C9B23" Association="Self.FK__Parentstb__Appro__182C9B23">
+    <AssociationSet Name="FK__Parentstb__Appro__3A81B327" Association="Self.FK__Parentstb__Appro__3A81B327">
       <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
       <End Role="Parentstbl" EntitySet="Parentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ParentStu__Paren__276EDEB3" Association="Self.FK__ParentStu__Paren__276EDEB3">
+    <AssociationSet Name="FK__ParentStu__Paren__3B75D760" Association="Self.FK__ParentStu__Paren__3B75D760">
       <End Role="Parentstbl" EntitySet="Parentstbl" />
       <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ParentStu__Stude__267ABA7A" Association="Self.FK__ParentStu__Stude__267ABA7A">
+    <AssociationSet Name="FK__ParentStu__Stude__3C69FB99" Association="Self.FK__ParentStu__Stude__3C69FB99">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCl__Class__22AA2996" Association="Self.FK__StudentCl__Class__22AA2996">
+    <AssociationSet Name="FK__StudentCl__Class__3D5E1FD2" Association="Self.FK__StudentCl__Class__3D5E1FD2">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCl__Stude__239E4DCF" Association="Self.FK__StudentCl__Stude__239E4DCF">
+    <AssociationSet Name="FK__StudentCl__Stude__3E52440B" Association="Self.FK__StudentCl__Stude__3E52440B">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentLe__Stude__37A5467C" Association="Self.FK__StudentLe__Stude__37A5467C">
+    <AssociationSet Name="FK__StudentLe__Stude__3F466844" Association="Self.FK__StudentLe__Stude__3F466844">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="StudentLefttbl" EntitySet="StudentLefttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Studentst__Activ__15502E78" Association="Self.FK__Studentst__Activ__15502E78">
+    <AssociationSet Name="FK__Studentst__Activ__403A8C7D" Association="Self.FK__Studentst__Activ__403A8C7D">
       <End Role="ActiveStatustbl" EntitySet="ActiveStatustbl" />
       <End Role="Studentstbl" EntitySet="Studentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Studentst__Appro__145C0A3F" Association="Self.FK__Studentst__Appro__145C0A3F">
+    <AssociationSet Name="FK__Studentst__Appro__412EB0B6" Association="Self.FK__Studentst__Appro__412EB0B6">
       <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
       <End Role="Studentstbl" EntitySet="Studentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeTable__Class__3A81B327" Association="Self.FK__TimeTable__Class__3A81B327">
+    <AssociationSet Name="FK__TimeTable__Class__4222D4EF" Association="Self.FK__TimeTable__Class__4222D4EF">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeTable__Subje__3B75D760" Association="Self.FK__TimeTable__Subje__3B75D760">
+    <AssociationSet Name="FK__TimeTable__Subje__4316F928" Association="Self.FK__TimeTable__Subje__4316F928">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
     </AssociationSet>

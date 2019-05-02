@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "AdminReportsOnly";
+}
+
+<h2>Authorized Reports</h2>
+
+<div style="padding-left:20px;">
+
+    <div class="form-group">
+        <label for="Classlist" class="control-label col-md-2">Class: </label>
+        <div class="col-md-10">
+            <select id="Classlist" name="Classlist" class="form-control">
+                @foreach (var o in ViewBag.Options)
+                {
+                    <option value="@o.ToString()">@o.ToString()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="subjectList" class="control-label col-md-2">Subject: </label>
+        <div class="col-md-10">
+            <select id="subjectList" name="subjectList" class="form-control">
+                @foreach (var o in new SelectList(""))
+                {
+                    <option value="@o.ToString()">@o.ToString()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="Termlist" class="control-label col-md-2">Term: </label>
+        <div class="col-md-10">
+            <select id="Termlist" name="Termlist" class="form-control">
+                @foreach (var o in ViewBag.Options1)
+            {
+                    <option value="@o.ToString()">@o.ToString()</option>
+                }
+            </select>
+        </div>
+    </div>
+
+</div>
+
+    <div style="align-self:center; text-align:center;padding-bottom:30px;">
+        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Class Assessment Report</a>
+    </div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Subject Assessment Report</a>
+</div>
+
+
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Term Wise Class Assessment Report</a>
+</div>
+
+    <div style="align-self:center; text-align:center;padding-bottom:30px;">
+        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Term Wise Subject Assessment Report</a>
+    </div>
+
+    <div style="align-self:center; text-align:center;padding-bottom:30px;">
+        <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Class Attendance Report</a>
+    </div>
+
+   
+<h2>Student Reports</h2>
+<div class="form-group">
+    <label for="Classlist1" class="control-label col-md-2">Class: </label>
+    <div class="col-md-10">
+        <select id="Classlist1" name="Classlist1" class="form-control">
+            @foreach (var o in ViewBag.Options)
+            {
+                <option value="@o.ToString()">@o.ToString()</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <label for="studentList" class="control-label col-md-2">Registration Number: </label>
+    <div class="col-md-10">
+        <select id="studentList" name="studentList" class="form-control">
+            @foreach (var o in new SelectList(""))
+            {
+                <option value="@o.ToString()">@o.ToString()</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Attendance Report</a>
+</div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Assessment Report</a>
+</div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Information Report</a>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+            $(document).ready(function () {
+                $("#Classlist").change(function () {
+                    $.get("/Reports/UpdateSubjects", { classname: $("#Classlist").find(":selected").text() }, function (data) {
+                        $("#subjectList").empty();
+                        $.each(data, function (index, row) {
+                            $("#subjectList").append("<option>" + row + "</option>")
+                        });
+                    });
+                })
+            });
+            $(document).ready(function () {
+                $("#Classlist1").change(function () {
+                    $.get("/Reports/UpdateStudents", { classname: $("#Classlist1").find(":selected").text() }, function (data) {
+                        $("#studentList").empty();
+                        $.each(data, function (index, row) {
+                            $("#studentList").append("<option>" + row + "</option>")
+                        });
+                    });
+                })
+            });
+</script>

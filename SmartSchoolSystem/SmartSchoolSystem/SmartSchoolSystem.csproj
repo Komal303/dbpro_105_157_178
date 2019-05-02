@@ -231,6 +231,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\RegistrationRequestsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\StudentMarkingController.cs" />
     <Compile Include="Controllers\StudentsLeftController.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Models\StudentRegistrationViewModels.cs" />
     <Compile Include="Models\StudentsLeftViewModel.cs" />
     <Compile Include="Models\SubjectViewModel.cs" />
+    <Compile Include="Models\TimeTableDetailedViewModels.cs" />
     <Compile Include="Models\TimeTableIndexViewModels.cs" />
     <Compile Include="Models\TimeTableViewModel.cs" />
     <Compile Include="Parentstbl.cs">
@@ -419,6 +421,10 @@
     <Content Include="Views\TimeTable\Create.cshtml" />
     <Content Include="Views\ApplyForLeave\Create.cshtml" />
     <Content Include="Views\Assessment\Create.cshtml" />
+    <Content Include="Views\Reports\AdminReportsOnly.cshtml" />
+    <Content Include="Views\Reports\ParentReports.cshtml" />
+    <Content Include="Views\Reports\StudentReports.cshtml" />
+    <Content Include="Views\TimeTable\DetailedTimeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

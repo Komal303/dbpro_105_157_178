@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ParentReports";
+}
+
+<h2>Reports Page</h2>
+
+
+
+<div class="form-group">
+    <label for="studentList" class="control-label col-md-2">Registration Number: </label>
+    <div class="col-md-10">
+        <select id="studentList" name="studentList" class="form-control">
+            @foreach (var o in ViewBag.students)
+            {
+                <option value="@o.ToString()">@o.ToString()</option>
+            }
+        </select>
+    </div>
+</div>
+
+
+
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Attendance Report</a>
+</div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Assessment Report</a>
+</div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <a class="btn btn-primary" style="background-color:black; border-color:black; align-self:center" href=@Url.Action("", "")>Student Information Report</a>
+</div>
+

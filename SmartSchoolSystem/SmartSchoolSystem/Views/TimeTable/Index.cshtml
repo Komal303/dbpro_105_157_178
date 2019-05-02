@@ -38,6 +38,9 @@
 <div style="align-self:center; text-align:center;padding-bottom:30px;">
     <input type="submit" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Time Table" class="btn btn-default" />
 </div>
+<div style="align-self:center; text-align:center;padding-bottom:30px;">
+    <input type="submit" name="timetable" id="timetable" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Detailed Time Table" class="btn btn-default" />
+</div>
 <h4 style="text-align:center;">@ViewBag.classname</h4>
 <div style= "padding-left : 200px;">
 
@@ -90,3 +93,13 @@
     </table>
     </div>
     }
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#timetable").click(function () {
+            $.post("/TimeTable/redirecttodetailedtimetable", { classname: $("#Classlist").find(":selected").text() }
+             
+            )});
+    });
+</script>

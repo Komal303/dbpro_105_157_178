@@ -9,6 +9,7 @@ namespace SmartSchoolSystem
     {
         public static string account = "";
         public static int parentid = -1;
+        public static int accountid = -1;
         
     }
 }
