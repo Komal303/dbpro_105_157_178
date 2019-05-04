@@ -171,7 +171,59 @@
     <Property Name="SubjectId" Type="int" Nullable="false" />
     <Property Name="LectureTime" Type="time" Precision="7" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Attendanc__Atten__30F848ED">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB37.dbo.School_Students' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="School_Students">
+    <Key>
+      <PropertyRef Name="ClassName" />
+      <PropertyRef Name="RegistrationNumber" />
+      <PropertyRef Name="StudentName" />
+    </Key>
+    <Property Name="ClassName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StudentName" Type="nvarchar" MaxLength="101" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB37.dbo.Show_Events' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Show_Events">
+    <Key>
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="EventDescription" />
+      <PropertyRef Name="StartTime" />
+      <PropertyRef Name="EndTime" />
+      <PropertyRef Name="Charges" />
+    </Key>
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EventDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="Charges" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB37.dbo.ShowAllActiveStudents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ShowAllActiveStudents">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Class" />
+      <PropertyRef Name="RegistrationNumber" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DB37.dbo.ShowAllInActiveStudents' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ShowAllInActiveStudents">
+    <Key>
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Class" />
+      <PropertyRef Name="RegistrationNumber" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Attendanc__Atten__34C8D9D1">
     <End Role="AttendanceStatustbl" Type="Self.AttendanceStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -185,7 +237,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Attendanc__Stude__31EC6D26">
+  <Association Name="FK__Attendanc__Stude__35BCFE0A">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -199,7 +251,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassSubj__Class__32E0915F">
+  <Association Name="FK__ClassSubj__Class__36B12243">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -213,7 +265,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ClassSubj__Subje__33D4B598">
+  <Association Name="FK__ClassSubj__Subje__37A5467C">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -227,7 +279,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Leavestbl__Paren__34C8D9D1">
+  <Association Name="FK__Leavestbl__Paren__38996AB5">
     <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="Leavestbl" Type="Self.Leavestbl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,7 +291,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Leavestbl__Stude__35BCFE0A">
+  <Association Name="FK__Leavestbl__Stude__398D8EEE">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -253,7 +305,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Class__36B12243">
+  <Association Name="FK__Markingst__Class__3A81B327">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -267,7 +319,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Stude__37A5467C">
+  <Association Name="FK__Markingst__Stude__3B75D760">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -281,7 +333,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__Subje__38996AB5">
+  <Association Name="FK__Markingst__Subje__3C69FB99">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -295,7 +347,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Markingst__TermI__398D8EEE">
+  <Association Name="FK__Markingst__TermI__3D5E1FD2">
     <End Role="Termstbl" Type="Self.Termstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -309,7 +361,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Parentstb__Appro__3A81B327">
+  <Association Name="FK__Parentstb__Appro__3E52440B">
     <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -323,7 +375,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ParentStu__Paren__3B75D760">
+  <Association Name="FK__ParentStu__Paren__3F466844">
     <End Role="Parentstbl" Type="Self.Parentstbl" Multiplicity="1" />
     <End Role="ParentStudenttbl" Type="Self.ParentStudenttbl" Multiplicity="*" />
     <ReferentialConstraint>
@@ -335,7 +387,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ParentStu__Stude__3C69FB99">
+  <Association Name="FK__ParentStu__Stude__403A8C7D">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -349,7 +401,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCl__Class__3D5E1FD2">
+  <Association Name="FK__StudentCl__Class__412EB0B6">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -363,7 +415,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentCl__Stude__3E52440B">
+  <Association Name="FK__StudentCl__Stude__4222D4EF">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -377,7 +429,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__StudentLe__Stude__3F466844">
+  <Association Name="FK__StudentLe__Stude__4316F928">
     <End Role="Studentstbl" Type="Self.Studentstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -391,7 +443,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Studentst__Activ__403A8C7D">
+  <Association Name="FK__Studentst__Activ__440B1D61">
     <End Role="ActiveStatustbl" Type="Self.ActiveStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -405,7 +457,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Studentst__Appro__412EB0B6">
+  <Association Name="FK__Studentst__Appro__44FF419A">
     <End Role="ApprovalStatustbl" Type="Self.ApprovalStatustbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -419,7 +471,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeTable__Class__4222D4EF">
+  <Association Name="FK__TimeTable__Class__45F365D3">
     <End Role="Classtbl" Type="Self.Classtbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -433,7 +485,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__TimeTable__Subje__4316F928">
+  <Association Name="FK__TimeTable__Subje__46E78A0C">
     <End Role="Subjectstbl" Type="Self.Subjectstbl" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -447,6 +499,58 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="AllTermMarksOfAClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AllTermMarksOfEachStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AttendanceofEachStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AttendanceofWholeClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Classid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="AverageOfSchool" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="ShowClassWiseActiveStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ShowClassWiseInActiveStudents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="class" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ShowStudentInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="StudentsOfClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Class" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SubjectsOfStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SubjectWiseMarkingForEachStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="studentId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SubjectWiseMarksForClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ClassId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TermWiseMarksOfAClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="int" Mode="In" />
+    <Parameter Name="termid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TermWiseMarksOfEachStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="termid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TimeTableForEachClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TotalMarksOfAllClasses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TotalMarksOfEachClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="classid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TotalMarksOfEachStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="DB37ModelStoreContainer">
     <EntitySet Name="ActiveStatustbl" EntityType="Self.ActiveStatustbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Adminstratortbl" EntityType="Self.Adminstratortbl" Schema="dbo" store:Type="Tables" />
@@ -466,83 +570,113 @@
     <EntitySet Name="Subjectstbl" EntityType="Self.Subjectstbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Termstbl" EntityType="Self.Termstbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TimeTabletbl" EntityType="Self.TimeTabletbl" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Attendanc__Atten__30F848ED" Association="Self.FK__Attendanc__Atten__30F848ED">
+    <EntitySet Name="School_Students" EntityType="Self.School_Students" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [School_Students].[ClassName] AS [ClassName], 
+    [School_Students].[RegistrationNumber] AS [RegistrationNumber], 
+    [School_Students].[StudentName] AS [StudentName]
+    FROM [dbo].[School_Students] AS [School_Students]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Show_Events" EntityType="Self.Show_Events" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Show_Events].[Title] AS [Title], 
+    [Show_Events].[EventDescription] AS [EventDescription], 
+    [Show_Events].[StartTime] AS [StartTime], 
+    [Show_Events].[EndTime] AS [EndTime], 
+    [Show_Events].[Charges] AS [Charges]
+    FROM [dbo].[Show_Events] AS [Show_Events]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ShowAllActiveStudents" EntityType="Self.ShowAllActiveStudents" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ShowAllActiveStudents].[Name] AS [Name], 
+    [ShowAllActiveStudents].[Class] AS [Class], 
+    [ShowAllActiveStudents].[RegistrationNumber] AS [RegistrationNumber]
+    FROM [dbo].[ShowAllActiveStudents] AS [ShowAllActiveStudents]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ShowAllInActiveStudents" EntityType="Self.ShowAllInActiveStudents" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ShowAllInActiveStudents].[Name] AS [Name], 
+    [ShowAllInActiveStudents].[Class] AS [Class], 
+    [ShowAllInActiveStudents].[RegistrationNumber] AS [RegistrationNumber]
+    FROM [dbo].[ShowAllInActiveStudents] AS [ShowAllInActiveStudents]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Attendanc__Atten__34C8D9D1" Association="Self.FK__Attendanc__Atten__34C8D9D1">
       <End Role="AttendanceStatustbl" EntitySet="AttendanceStatustbl" />
       <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Attendanc__Stude__31EC6D26" Association="Self.FK__Attendanc__Stude__31EC6D26">
+    <AssociationSet Name="FK__Attendanc__Stude__35BCFE0A" Association="Self.FK__Attendanc__Stude__35BCFE0A">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="AttendanceMarkingtbl" EntitySet="AttendanceMarkingtbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassSubj__Class__32E0915F" Association="Self.FK__ClassSubj__Class__32E0915F">
+    <AssociationSet Name="FK__ClassSubj__Class__36B12243" Association="Self.FK__ClassSubj__Class__36B12243">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ClassSubj__Subje__33D4B598" Association="Self.FK__ClassSubj__Subje__33D4B598">
+    <AssociationSet Name="FK__ClassSubj__Subje__37A5467C" Association="Self.FK__ClassSubj__Subje__37A5467C">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="ClassSubjecttbl" EntitySet="ClassSubjecttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Leavestbl__Paren__34C8D9D1" Association="Self.FK__Leavestbl__Paren__34C8D9D1">
+    <AssociationSet Name="FK__Leavestbl__Paren__38996AB5" Association="Self.FK__Leavestbl__Paren__38996AB5">
       <End Role="Parentstbl" EntitySet="Parentstbl" />
       <End Role="Leavestbl" EntitySet="Leavestbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Leavestbl__Stude__35BCFE0A" Association="Self.FK__Leavestbl__Stude__35BCFE0A">
+    <AssociationSet Name="FK__Leavestbl__Stude__398D8EEE" Association="Self.FK__Leavestbl__Stude__398D8EEE">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="Leavestbl" EntitySet="Leavestbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Class__36B12243" Association="Self.FK__Markingst__Class__36B12243">
+    <AssociationSet Name="FK__Markingst__Class__3A81B327" Association="Self.FK__Markingst__Class__3A81B327">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Stude__37A5467C" Association="Self.FK__Markingst__Stude__37A5467C">
+    <AssociationSet Name="FK__Markingst__Stude__3B75D760" Association="Self.FK__Markingst__Stude__3B75D760">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__Subje__38996AB5" Association="Self.FK__Markingst__Subje__38996AB5">
+    <AssociationSet Name="FK__Markingst__Subje__3C69FB99" Association="Self.FK__Markingst__Subje__3C69FB99">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Markingst__TermI__398D8EEE" Association="Self.FK__Markingst__TermI__398D8EEE">
+    <AssociationSet Name="FK__Markingst__TermI__3D5E1FD2" Association="Self.FK__Markingst__TermI__3D5E1FD2">
       <End Role="Termstbl" EntitySet="Termstbl" />
       <End Role="Markingstbl" EntitySet="Markingstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Parentstb__Appro__3A81B327" Association="Self.FK__Parentstb__Appro__3A81B327">
+    <AssociationSet Name="FK__Parentstb__Appro__3E52440B" Association="Self.FK__Parentstb__Appro__3E52440B">
       <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
       <End Role="Parentstbl" EntitySet="Parentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ParentStu__Paren__3B75D760" Association="Self.FK__ParentStu__Paren__3B75D760">
+    <AssociationSet Name="FK__ParentStu__Paren__3F466844" Association="Self.FK__ParentStu__Paren__3F466844">
       <End Role="Parentstbl" EntitySet="Parentstbl" />
       <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__ParentStu__Stude__3C69FB99" Association="Self.FK__ParentStu__Stude__3C69FB99">
+    <AssociationSet Name="FK__ParentStu__Stude__403A8C7D" Association="Self.FK__ParentStu__Stude__403A8C7D">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="ParentStudenttbl" EntitySet="ParentStudenttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCl__Class__3D5E1FD2" Association="Self.FK__StudentCl__Class__3D5E1FD2">
+    <AssociationSet Name="FK__StudentCl__Class__412EB0B6" Association="Self.FK__StudentCl__Class__412EB0B6">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentCl__Stude__3E52440B" Association="Self.FK__StudentCl__Stude__3E52440B">
+    <AssociationSet Name="FK__StudentCl__Stude__4222D4EF" Association="Self.FK__StudentCl__Stude__4222D4EF">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="StudentClasstbl" EntitySet="StudentClasstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__StudentLe__Stude__3F466844" Association="Self.FK__StudentLe__Stude__3F466844">
+    <AssociationSet Name="FK__StudentLe__Stude__4316F928" Association="Self.FK__StudentLe__Stude__4316F928">
       <End Role="Studentstbl" EntitySet="Studentstbl" />
       <End Role="StudentLefttbl" EntitySet="StudentLefttbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Studentst__Activ__403A8C7D" Association="Self.FK__Studentst__Activ__403A8C7D">
+    <AssociationSet Name="FK__Studentst__Activ__440B1D61" Association="Self.FK__Studentst__Activ__440B1D61">
       <End Role="ActiveStatustbl" EntitySet="ActiveStatustbl" />
       <End Role="Studentstbl" EntitySet="Studentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__Studentst__Appro__412EB0B6" Association="Self.FK__Studentst__Appro__412EB0B6">
+    <AssociationSet Name="FK__Studentst__Appro__44FF419A" Association="Self.FK__Studentst__Appro__44FF419A">
       <End Role="ApprovalStatustbl" EntitySet="ApprovalStatustbl" />
       <End Role="Studentstbl" EntitySet="Studentstbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeTable__Class__4222D4EF" Association="Self.FK__TimeTable__Class__4222D4EF">
+    <AssociationSet Name="FK__TimeTable__Class__45F365D3" Association="Self.FK__TimeTable__Class__45F365D3">
       <End Role="Classtbl" EntitySet="Classtbl" />
       <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
     </AssociationSet>
-    <AssociationSet Name="FK__TimeTable__Subje__4316F928" Association="Self.FK__TimeTable__Subje__4316F928">
+    <AssociationSet Name="FK__TimeTable__Subje__46E78A0C" Association="Self.FK__TimeTable__Subje__46E78A0C">
       <End Role="Subjectstbl" EntitySet="Subjectstbl" />
       <End Role="TimeTabletbl" EntitySet="TimeTabletbl" />
     </AssociationSet>

@@ -80,7 +80,8 @@ namespace SmartSchoolSystem.Controllers
                 Attendance.studentlist.Clear();
                 foreach (StudentClasstbl s in db.StudentClasstbls)
                 {
-                    if(s.ClassId == classid)
+                    int studentactivestatusid = db.Studentstbls.Where(t => t.Id == s.StudentId).FirstOrDefault().ActiveStatusId;
+                    if(s.ClassId == classid && studentactivestatusid == db.ActiveStatustbls.Where(t1=>t1.Name =="Active").FirstOrDefault().Id)
                     {
                         Attendance a = new Attendance();
                         a.regNo = db.Studentstbls.Where(t=> t.Id == s.StudentId).FirstOrDefault().RegistrationNumber;
@@ -123,7 +124,9 @@ namespace SmartSchoolSystem.Controllers
                                 ViewBag.warn = "Attendance of class at this date is already marked";
                                 foreach (StudentClasstbl s in db.StudentClasstbls)
                                 {
-                                    if (s.ClassId == classid)
+                                    int studentactivestatusid = db.Studentstbls.Where(t => t.Id == s.StudentId).FirstOrDefault().ActiveStatusId;
+
+                                    if (s.ClassId == classid && studentactivestatusid == db.ActiveStatustbls.Where(t1 => t1.Name == "Active").FirstOrDefault().Id)
                                     {
                                         Attendance a = new Attendance();
                                         a.regNo = db.Studentstbls.Where(t => t.Id == s.StudentId).FirstOrDefault().RegistrationNumber;

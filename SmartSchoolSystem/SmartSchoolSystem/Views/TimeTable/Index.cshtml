@@ -35,12 +35,17 @@
         }
     </select>
 </div>
+ if (HelperClass.account == "Admin")
+ {
 <div style="align-self:center; text-align:center;padding-bottom:30px;">
     <input type="submit" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Time Table" class="btn btn-default" />
 </div>
+ }
 <div style="align-self:center; text-align:center;padding-bottom:30px;">
-    <input type="submit" name="timetable" id="timetable" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Detailed Time Table" class="btn btn-default" />
+    <input type="button" name="timetable" id="timetable" style="background-color:black; border-color:black; align-self:center; color:white;" value="Show Time Table" class="btn btn-default" />
 </div>
+    if (HelperClass.account == "Admin")
+    {
 <h4 style="text-align:center;">@ViewBag.classname</h4>
 <div style= "padding-left : 200px;">
 
@@ -85,7 +90,7 @@
                                @Html.ActionLink("Delete", "Delete", new { subjectname = item.subjectname, classname = ViewBag.classname, dayname = item.dayname, time = item.time }, new { @class = "button" })
                                </button>
                    </div>
-                           }
+                   }
                 </td>
             </tr>
         }
@@ -93,13 +98,48 @@
     </table>
     </div>
     }
+}
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
-    $(document).ready(function () {
+
+    $("#timetable").click(function()
+    {
+        gototimetable();
+    })
+    /*$(document).ready(function () {
         $("#timetable").click(function () {
-            $.post("/TimeTable/redirecttodetailedtimetable", { classname: $("#Classlist").find(":selected").text() }
-             
-            )});
-    });
+            //$.post("/TimeTable/redirecttodetailedtimetable", {classname: $("#Classlist").find(":selected").text()})
+
+            var url = 'http://localhost:50566/TimeTable/redirecttodetailedtimetable';
+            var data = {
+                classname: $("#Classlist").find(":selected").text()
+            };
+            $.getJSON(url, classname, function (status) {
+                if (status === 200) {
+                    window.location.href = "http://localhost:50566/TimeTable/DetailedTimeTable";
+                }
+            })
+           
+        });
+       
+    });*/
+    function gototimetable()
+    {
+        debugger;
+        event.preventDefault();
+        var $url = '/TimeTable/redirecttodetailedtimetable';
+        $.ajax({
+            url: $url,
+            type: 'POST',
+            datatype: 'json',
+            data: jQuery.param({
+                classname: $("#Classlist").find(":selected").text()
+            }),
+            success: function(r)
+            {
+                window.location.href = '/TimeTable/DetailedTimeTable'
+            }
+        })
+    }
 </script>

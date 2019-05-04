@@ -7,6 +7,7 @@ namespace SmartSchoolSystem.Models
 {
     public class TimeTableDetailedViewModels
     {
+        public static string classname{get; set;}
         public static List<TimeTableDetailedViewModels> timetablelist = new List<TimeTableDetailedViewModels>();
         public string dayname { get; set; }
         public string lecture1 { get; set; }

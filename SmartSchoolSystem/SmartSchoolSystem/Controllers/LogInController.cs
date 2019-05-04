@@ -57,6 +57,7 @@ namespace SmartSchoolSystem.Controllers
                     db.Studentstbls.Where(t2 => t2.Username.Equals(login.UserName)).FirstOrDefault().ApprovalStatusId.Equals(db.ApprovalStatustbls.Where(t3 => t3.Name.Equals("approved")).FirstOrDefault().Id))
                 {
                     HelperClass.accountid = db.Studentstbls.Where(t => t.Username == login.UserName).First().Id;
+                    HelperClass.studentregno = db.Studentstbls.Where(t => t.Id == HelperClass.accountid).FirstOrDefault().RegistrationNumber;
                     return RedirectToAction("Index", "Home");
                 }
                 else

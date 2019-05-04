@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -196,7 +199,19 @@
     <Compile Include="ActiveStatustbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ActiveStudentsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActiveStudentsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Adminstratortbl.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AllTermMarksOfAClass_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AllTermMarksOfEachStudent_Result.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ApprovalStatustbl.cs">
@@ -210,8 +225,29 @@
     <Compile Include="AttendanceMarkingtbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AttendanceOfEachStudent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttendanceOfEachStudent.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AttendanceofEachStudent_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceofWholeClass_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="AttendanceStatustbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AverageOfSchool_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClassAttendanceReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassAttendanceReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="ClassSubjecttbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
@@ -237,36 +273,24 @@
     <Compile Include="Controllers\StudentsLeftController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\TimeTableController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
+    <Compile Include="DetailedClassAssessment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailedClassAssessment.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HelperClass.cs" />
+    <Compile Include="DetailedStudentAssessment.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailedStudentAssessment.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Leavestbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Markingstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplyForLeaveViewModel.cs" />
-    <Compile Include="Models\AssessmentViewModel.cs" />
-    <Compile Include="Models\Attendance.cs" />
-    <Compile Include="Models\ClassesViewModels.cs" />
-    <Compile Include="Models\EventViewModel.cs" />
-    <Compile Include="Models\GmailViewModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LeaveRequestsViewModel.cs" />
-    <Compile Include="Models\LogInViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ParentRegistrationViewModels.cs" />
-    <Compile Include="Models\RegistrationRequestsViewModel.cs" />
-    <Compile Include="Models\StudentMarkingViewModel.cs" />
-    <Compile Include="Models\StudentRegistrationViewModels.cs" />
-    <Compile Include="Models\StudentsLeftViewModel.cs" />
-    <Compile Include="Models\SubjectViewModel.cs" />
-    <Compile Include="Models\TimeTableDetailedViewModels.cs" />
-    <Compile Include="Models\TimeTableIndexViewModels.cs" />
-    <Compile Include="Models\TimeTableViewModel.cs" />
     <Compile Include="Parentstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
@@ -288,27 +312,167 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchoolEventstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Startup.cs" />
+    <Compile Include="School_Students.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowAllActiveStudent.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowAllInActiveStudent.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowClassWiseActiveStudents_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowClassWiseInActiveStudents_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShowStudentInfo_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Show_Events.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="StudentClasstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentInfo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass.cs" />
+    <Compile Include="InActiveStudentsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InActiveStudentsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplyForLeaveViewModel.cs" />
+    <Compile Include="Models\AssessmentViewModel.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\ClassesViewModels.cs" />
+    <Compile Include="Models\EventViewModel.cs" />
+    <Compile Include="Models\GmailViewModel.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LeaveRequestsViewModel.cs" />
+    <Compile Include="Models\LogInViewModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ParentRegistrationViewModels.cs" />
+    <Compile Include="Models\RegistrationRequestsViewModel.cs" />
+    <Compile Include="Models\StudentMarkingViewModel.cs" />
+    <Compile Include="Models\StudentRegistrationViewModels.cs" />
+    <Compile Include="Models\StudentsLeftViewModel.cs" />
+    <Compile Include="Models\SubjectViewModel.cs" />
+    <Compile Include="Models\TimeTableDetailedViewModels.cs" />
+    <Compile Include="Models\TimeTableIndexViewModels.cs" />
+    <Compile Include="Models\TimeTableViewModel.cs" />
+    <Compile Include="ProjectDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SchoolStudentsReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SchoolStudentsReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Startup.cs" />
     <Compile Include="StudentLefttbl.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StudentsOfClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsOfClass.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StudentsOfClass_Result.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Studentstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="StudentTotalMarks.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentTotalMarks.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubjectsOfStudent.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubjectsOfStudent.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SubjectsOfStudent_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Subjectstbl.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubjectWiseMarkingForEachStudent_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SubjectWiseMarksForClass_Result.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Termstbl.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TermWiseMarks.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TermWiseMarks.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TermWiseMarksOfAClass_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TermWiseMarksOfEachStudent_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TimeTableForEachClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimeTableForEachClass.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TimeTableForEachClass_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="TimeTabletbl.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TotalMarksOfAllClasses_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TotalMarksOfClass.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TotalMarksOfClass.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TotalMarksOfEachClass_Result.cs">
+      <DependentUpon>ProjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TotalMarksOfEachStudent_Result.cs">
       <DependentUpon>ProjectModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -341,6 +505,17 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="ProjectDataSet.xsc">
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ProjectDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ProjectDataSet.xss">
+      <DependentUpon>ProjectDataSet.xsd</DependentUpon>
+    </Content>
     <EntityDeploy Include="ProjectModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ProjectModel.Designer.cs</LastGenOutput>
@@ -443,6 +618,69 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActiveStudentsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ActiveStudentsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceOfEachStudent.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AttendanceOfEachStudent.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClassAttendanceReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ClassAttendanceReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedClassAssessment.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DetailedClassAssessment.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailedStudentAssessment.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DetailedStudentAssessment.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentInfo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StudentInfo.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EventsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InActiveStudentsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InActiveStudentsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SchoolStudentsReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SchoolStudentsReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentsOfClass.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StudentsOfClass.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StudentTotalMarks.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>StudentTotalMarks.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubjectsOfStudent.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SubjectsOfStudent.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TermWiseMarks.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TermWiseMarks.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeTableForEachClass.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TimeTableForEachClass.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TotalMarksOfClass.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TotalMarksOfClass.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
